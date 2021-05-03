@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import NextButton from "../components/nextButton"
 
 /** Login Screen
@@ -11,10 +11,19 @@ import NextButton from "../components/nextButton"
  */
 function LoginScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={style.view}>
       <Text>Login</Text>
       <NextButton navigation={navigation} txt="Go to Home" next="Home" />
     </View>
   );
 }
+
+const style = StyleSheet.create({
+  view: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+})
+
 export default LoginScreen
