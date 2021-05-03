@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import NextButton from "../components/nextButton"
 
 /** Login Screen
  *  Design (fimga login-1):
@@ -12,10 +13,7 @@ function LoginScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Login</Text>
-      <Button
-        title="Go to Home"
-        onPress={() => navigation.navigate('Home')}
-      />
+      <NextButton navigation={navigation} txt="Go to Home" next="Home" />
     </View>
   );
 }

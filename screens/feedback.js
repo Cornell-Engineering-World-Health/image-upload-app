@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import NextButton from "../components/nextButton"
 
 /** Feedback Screen
  *  Design (Feedback-1): 
@@ -10,10 +11,7 @@ function FeedbackScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Feedback</Text>
-      <Button
-        title="Go to Home"
-        onPress={() => navigation.navigate('Home')}
-      />
+      <NextButton navigation={navigation} txt="Go to Home" next="Home" />
     </View>
   );
 }

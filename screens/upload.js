@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import NextButton from "../components/nextButton"
 
 /** Upload Screen
  *  Design (Upload-1): 
@@ -13,10 +14,7 @@ function UploadScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Upload</Text>
-      <Button
-        title="Go to Feedback"
-        onPress={() => navigation.navigate('Feedback')}
-      />
+      <NextButton navigation={navigation} txt="Go to Feedback" next="Feedback" />
     </View>
   );
 }

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import NextButton from "../components/nextButton"
 
 /** Home Screen
  *  Design (Home-1): 
@@ -11,11 +12,8 @@ import { Button, View, Text } from 'react-native';
 function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Login</Text>
-      <Button
-        title="Go to Upload"
-        onPress={() => navigation.navigate('Upload')}
-      />
+      <Text>Home</Text>
+      <NextButton navigation={navigation} txt="Go to upload" next="Upload" />
     </View>
   );
 }
