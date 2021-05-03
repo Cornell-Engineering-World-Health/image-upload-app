@@ -3,9 +3,9 @@
 */
 class Image {
   constructor(image_uri, labels, metadata) {
-    this.image_uri = image_uri
-    this.labels = labels
-    this.metadata = metadata
+    this.image_uri = image_uri;
+    this.labels = labels;
+    this.metadata = metadata;
   }
 }
 
@@ -13,9 +13,10 @@ class Image {
  *  a location string, as well as any other relevant metadata.
 */
 class Metadata {
-  constructor(user_id, date, location) {
-    this.user_id = user_id
-    this.date = date
-    this.location = location
+  constructor(email, user_id, date, location) {
+    this.email = email;
+    this.user_id = user_id;
+    this.date = date;
+    this.location = location;
   }
 }
