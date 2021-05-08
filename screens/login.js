@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -7,10 +8,9 @@ import {
   TextInput,
   Platform,
   TouchableWithoutFeedback,
-  Button,
   Keyboard,
 } from "react-native";
-import NextButton from "../components/nextButton";
+import LoginButton from "../components/loginButton";
 import Title from "../components/title";
 
 /** Login Screen
@@ -21,6 +21,9 @@ import Title from "../components/title";
  * Requires: authentication before navigating to home screen
  */
 function LoginScreen({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -37,6 +40,8 @@ function LoginScreen({ navigation }) {
             style={style.textInput}
             autoCapitalize="none"
             autoCorrect={false}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           />
           <Text style={style.password}>Password</Text>
           <TextInput
@@ -44,8 +49,14 @@ function LoginScreen({ navigation }) {
             style={style.textInput}
             autoCompleteType="password"
             secureTextEntry={true}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
           />
-          <NextButton navigation={navigation} txt="LOGIN" next="Home" />
+          <LoginButton
+            navigation={navigation}
+            email={email}
+            password={password}
+          />
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
