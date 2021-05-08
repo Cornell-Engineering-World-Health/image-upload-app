@@ -32,9 +32,19 @@ function LoginScreen({ navigation }) {
             Login
           </Title>
           <Text style={style.username}>Username</Text>
-          <TextInput placeholder="Username" style={style.textInput} />
+          <TextInput
+            placeholder="Username"
+            style={style.textInput}
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
           <Text style={style.password}>Password</Text>
-          <TextInput placeholder="Password" style={style.textInput} />
+          <TextInput
+            placeholder="Password"
+            style={style.textInput}
+            autoCompleteType="password"
+            secureTextEntry={true}
+          />
           <NextButton navigation={navigation} txt="LOGIN" next="Home" />
         </View>
       </TouchableWithoutFeedback>
