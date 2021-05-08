@@ -1,6 +1,17 @@
-import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import NextButton from "../components/nextButton"
+import * as React from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  KeyboardAvoidingView,
+  TextInput,
+  Platform,
+  TouchableWithoutFeedback,
+  Button,
+  Keyboard,
+} from "react-native";
+import NextButton from "../components/nextButton";
+import Title from "../components/title";
 
 /** Login Screen
  *  Design (fimga login-1):
@@ -11,19 +22,58 @@ import NextButton from "../components/nextButton"
  */
 function LoginScreen({ navigation }) {
   return (
-    <View style={style.view}>
-      <Text>Login</Text>
-      <NextButton navigation={navigation} txt="Go to Home" next="Home" />
-    </View>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={style.container}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={style.container}>
+          <Title style={style.title} size={40} align="left">
+            Login
+          </Title>
+          <Text style={style.username}>Username</Text>
+          <TextInput placeholder="Username" style={style.textInput} />
+          <Text style={style.password}>Password</Text>
+          <TextInput placeholder="Password" style={style.textInput} />
+          <NextButton navigation={navigation} txt="LOGIN" next="Home" />
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
 
 const style = StyleSheet.create({
-  view: {
+  container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "stretch",
   },
-})
+  username: {
+    fontSize: 25,
+    marginTop: 20,
+    marginBottom: 10,
+    alignSelf: "stretch",
+    textAlign: "left",
+    marginHorizontal: 20,
+  },
+  password: {
+    fontSize: 25,
+    marginBottom: 10,
+    alignSelf: "stretch",
+    textAlign: "left",
+    marginHorizontal: 20,
+  },
+  textInput: {
+    height: 50,
+    borderColor: "#000000",
+    borderWidth: 1,
+    marginBottom: 30,
+    marginHorizontal: 20,
+    alignSelf: "stretch",
+    paddingHorizontal: 10,
+  },
+});
 
-export default LoginScreen
+export default LoginScreen;
