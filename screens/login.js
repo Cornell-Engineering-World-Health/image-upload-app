@@ -1,6 +1,17 @@
-import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import NextButton from "../components/nextButton"
+import * as React from "react";
+import { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  KeyboardAvoidingView,
+  TextInput,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
+import LoginButton from "../components/loginButton";
+import Title from "../components/title";
 
 /** Login Screen
  *  Design (fimga login-1):
@@ -10,20 +21,80 @@ import NextButton from "../components/nextButton"
  * Requires: authentication before navigating to home screen
  */
 function LoginScreen({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
-    <View style={style.view}>
-      <Text>Login</Text>
-      <NextButton navigation={navigation} txt="Go to Home" next="Home" />
-    </View>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={style.container}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={style.container}>
+          <Title style={style.title} size={40} align="left">
+            Login
+          </Title>
+          <Text style={style.username}>Username</Text>
+          <TextInput
+            placeholder="Username"
+            style={style.textInput}
+            autoCapitalize="none"
+            autoCorrect={false}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+          />
+          <Text style={style.password}>Password</Text>
+          <TextInput
+            placeholder="Password"
+            style={style.textInput}
+            autoCompleteType="password"
+            secureTextEntry={true}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
+          <LoginButton
+            navigation={navigation}
+            email={email}
+            password={password}
+          />
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
 
 const style = StyleSheet.create({
-  view: {
+  container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "stretch",
   },
-})
+  username: {
+    fontSize: 25,
+    marginTop: 20,
+    marginBottom: 10,
+    alignSelf: "stretch",
+    textAlign: "left",
+    marginHorizontal: 20,
+  },
+  password: {
+    fontSize: 25,
+    marginBottom: 10,
+    alignSelf: "stretch",
+    textAlign: "left",
+    marginHorizontal: 20,
+  },
+  textInput: {
+    height: 50,
+    borderColor: "#000000",
+    borderWidth: 1,
+    marginBottom: 30,
+    marginHorizontal: 20,
+    alignSelf: "stretch",
+    paddingHorizontal: 10,
+  },
+});
 
-export default LoginScreen
+export default LoginScreen;
