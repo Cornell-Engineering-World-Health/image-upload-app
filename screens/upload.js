@@ -30,13 +30,13 @@ function UploadScreen({ navigation }) {
       <Text style={style.tags_label}>Tags:</Text>
       <View style={style.tags_view}>
         <View style={style.rectangle}>
-          <TextInput style={style.input} onChangeText={x => newCategory1[x]} placeholderTextColor='black' placeholder="    Category 1"></TextInput>
+          <TextInput style={style.input} onChangeText={x => newCategory1(x)} placeholderTextColor='black' placeholder="    Category 1"></TextInput>
         </View>
         <View style={style.rectangle2}>
-          <TextInput style={style.input} onChangeText={x => newCategory2[x]} placeholderTextColor='black' placeholder="    Category 2"></TextInput>
+          <TextInput style={style.input} onChangeText={x => newCategory2(x)} placeholderTextColor='black' placeholder="    Category 2"></TextInput>
         </View>
         <View style={style.rectangle3}>
-          <TextInput style={style.input} onChangeText={x => newCategory3[x]} placeholderTextColor='black' placeholder="    Category 3"></TextInput>
+          <TextInput style={style.input} onChangeText={x => newCategory3(x)} placeholderTextColor='black' placeholder="    Category 3"></TextInput>
         </View>
       </View>
       <NextButton style={style.upload} navigation={navigation} txt="UPLOAD" next="Feedback" />
