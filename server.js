@@ -5,9 +5,12 @@ const bodyParser = require('body-parser')
 // const imgUpload = require('../modules/imgUpload');
 
 const app = express()
-app.listen(9001, () => {
-  console.log('Listening on port 9001')
+app.listen(19002, () => {
+  console.log('Listening on port 19002')
 })
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 // Handles the multipart/form-data
 // Adds a .file key to the request object
