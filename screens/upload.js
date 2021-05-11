@@ -47,47 +47,49 @@ function UploadScreen({ navigation }) {
 
 const style = StyleSheet.create({
   input: {
-    height: 300,
-    left: "70px",
-    top: "100px",
+    height: 50,
+    left: 15,
     color: "black"
   },
   rectangle: {
-    height: 75,
-    width: 210,
+    height: 50,
+    width: 150,
     marginTop: 30,
     marginBottom: 30,
     backgroundColor: '#8C7F7F',
     position: 'absolute',
-    left: "10px"
+    left: 20,
+    zIndex: -1
   }, rectangle2: {
-    height: 75,
-    width: 210,
+    height: 50,
+    width: 150,
     marginTop: 30,
     marginBottom: 30,
     backgroundColor: '#8C7F7F',
     position: 'absolute',
-    left: "10px",
-    top: "100px"
+    left: 20,
+    top: 100,
+    zIndex: -1
   }, rectangle3: {
-    height: 75,
-    width: 210,
+    height: 50,
+    width: 150,
     marginTop: 30,
     marginBottom: 30,
     backgroundColor: '#8C7F7F',
     position: 'absolute',
-    left: "10px",
-    top: "200px"
+    left: 20,
+    top: 200,
+    zIndex: -1
   },
   tags_label: {
-    paddingTop: "30px",
-    marginBottom: "10px",
-    fontSize: "23px"
+    paddingTop: 10,
+    marginBottom: 10,
+    fontSize: 23
   },
   tags_view: {
     flex: 1,
-    minWidth: 500,
-    minHeight: 600,
+    minWidth: 300,
+    maxHeight: 300,
     borderRadius: 5,
     borderWidth: 2,
     borderColor: "black",
@@ -107,15 +109,14 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   label: {
-    paddingTop: "40px",
-    marginBottom: "30px",
-    flex: .1,
-    fontSize: "46px",
+    paddingTop: 10,
+    marginBottom: 15,
+    fontSize: 20,
     fontWeight: "bold",
   },
   thumbnail: {
-    width: 180,
-    height: 180,
+    width: 100,
+    height: 100,
   }
 })
 
