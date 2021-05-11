@@ -82,7 +82,7 @@ const style = StyleSheet.create({
   tags_label: {
     paddingTop: "30px",
     marginBottom: "10px",
-    alignItem: 'left',
+    alignItems: 'left',
     fontSize: "23px"
   },
   tags_view: {
