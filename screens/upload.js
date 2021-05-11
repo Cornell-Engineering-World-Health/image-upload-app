@@ -14,7 +14,6 @@ function UploadScreen({ navigation }) {
   return (
     <View style={style.view}>
       <Text>Upload</Text>
-      <NextButton navigation={navigation} txt="Go to Feedback" next="Feedback" />
     </View>
   );
 }
