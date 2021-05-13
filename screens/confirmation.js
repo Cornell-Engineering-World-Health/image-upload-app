@@ -22,8 +22,7 @@ function ConfirmationScreen({ navigation, route }) {
       <Text>{label1}</Text>
       <Text>{label2}</Text>
       <Text>{label3}</Text>
-      <NextButton navigation={navigation} txt="TAKE ANOTHER PIC" next="Capture" />
-      <NextButton navigation={navigation} txt="BACK TO HOME" next="Home" />
+      <NextButton navigation={navigation} txt="UPLOAD" next="Home" />
     </View>
   );
 }
