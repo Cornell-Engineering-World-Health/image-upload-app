@@ -7,7 +7,9 @@ import LoginScreen from "./screens/login";
 import HomeScreen from "./screens/home";
 import GalleryScreen from "./screens/gallery";
 import UploadScreen from "./screens/upload";
-import FeedbackScreen from "./screens/feedback";
+import CaptureScreen from "./screens/capture";
+import UploadImageScreen from "./screens/uploadimage.js"
+import ConfirmationScreen from "./screens/confirmation.js"
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -29,7 +31,9 @@ function App() {
         <Stack.Screen name="PreLogin" component={PreLoginScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeTabs} />
-        <Stack.Screen name="Feedback" component={FeedbackScreen} />
+        <Stack.Screen name="Capture" component={CaptureScreen} />
+        <Stack.Screen name="Confirmation" component={ConfirmationScreen} />
+        <Stack.Screen name="UploadImageScreen" component={UploadImageScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
