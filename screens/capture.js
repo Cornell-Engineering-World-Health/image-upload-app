@@ -35,7 +35,6 @@ function CaptureScreen({ navigation }) {
       <View style={styles.cameraContainer}>
         <Camera ref={ref => setCamera(ref)} style={styles.camera} ratio={"4:3"} type={type}>
         </Camera>
-        <Image source={{ uri: image }} style={styles.capture} />
       </View>
       <TouchableOpacity
         style={styles.button}
