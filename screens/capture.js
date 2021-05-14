@@ -9,17 +9,6 @@ function CaptureScreen({ navigation }) {
   const [image, setImage] = useState(null);
   const [camera, setCamera] = useState(null);
 
-  let openImagePickerAsync = async () => {
-    let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-    if (permissionResult.granted === false) {
-      alert("Permission to access camera roll is required!");
-      return;
-    }
-
-    let pickerResult = await ImagePicker.launchImageLibraryAsync();
-    setImage(pickerResult.uri);
-  }
   const takePic = async () => {
     if (camera) {
       const data = await camera.takePictureAsync(null)
@@ -46,7 +35,6 @@ function CaptureScreen({ navigation }) {
       <View style={styles.cameraContainer}>
         <Camera ref={ref => setCamera(ref)} style={styles.camera} ratio={"4:3"} type={type}>
         </Camera>
-        <Image source={{ uri: image }} style={styles.capture} />
       </View>
       <TouchableOpacity
         style={styles.button}
