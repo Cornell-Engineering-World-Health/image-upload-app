@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { StyleSheet, View, Text, Image, TextInput } from 'react-native';
+import { TouchableOpacity, StyleSheet, View, Text, Image, TextInput } from 'react-native';
 import NextButton from "../components/nextButton"
+import { Image_object, Metadata } from '../util/Image'
 //import ImageViewer from 'react-native-image-zoom-viewer';
-const images = [{ url: 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/sample_img.png' }]
-let category_names = []
 
 /** Upload Screen
  *  Design (Upload-1): 
@@ -16,17 +15,20 @@ let category_names = []
  */
 
 /** <ImageViewer imageUrls={images} renderIndicator={() => null} /> */
-function UploadScreen({ navigation }) {
+function UploadScreen({ route, navigation }) {
+  const { img } = route.params;
+  console.log(img.uri)
   const [category1, newCategory1] = useState('');
   const [category2, newCategory2] = useState('');
   const [category3, newCategory3] = useState('');
 
 
 
+
   return (
     <View style={style.view}>
       <Text style={style.label}>Label Image</Text>
-      <Image style={style.thumbnail} source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }} />
+      <Image style={style.thumbnail} source={{ uri: img.uri }} />
       <Text style={style.tags_label}>Tags:</Text>
       <View style={style.tags_view}>
         <View style={style.rectangle}>
@@ -39,7 +41,16 @@ function UploadScreen({ navigation }) {
           <TextInput style={style.input} onChangeText={x => newCategory3(x)} placeholderTextColor='black' placeholder="    Category 3"></TextInput>
         </View>
       </View>
-      <NextButton style={style.upload} navigation={navigation} txt="UPLOAD" next="Feedback" />
+      <TouchableOpacity
+        style={style.button}
+        onPress={() => {
+          var metadata = new Metadata("test@gmail.com", "test@gmail.com", new Date().getDate(), '')
+          var image = new Image_object(img.uri, [category1, category2, category3], metadata);
+          navigation.navigate("Confirmation", { image: image })
+        }}
+      >
+        <Text style={style.buttonText}>UPLOAD</Text>
+      </TouchableOpacity>
       <NextButton style={style.back} navigation={navigation} txt="CANCEL" next="Home" />
     </View >
   );
@@ -50,6 +61,10 @@ const style = StyleSheet.create({
     height: 50,
     left: 15,
     color: "black"
+  },
+  buttonText: {
+    fontSize: 20,
+    color: "#000",
   },
   rectangle: {
     height: 50,
@@ -101,8 +116,18 @@ const style = StyleSheet.create({
   },
   upload: {
     flex: .1,
-    width: "100px",
+    width: "500px",
+    color: "gray",
     fontWeight: "bold"
+  },
+  button: {
+    backgroundColor: "#C4C4C4",
+    padding: 20,
+    borderRadius: 5,
+    alignSelf: "stretch",
+    marginHorizontal: 20,
+    marginVertical: 10,
+    alignItems: "center",
   },
   view: {
     flex: 1,
