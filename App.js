@@ -8,9 +8,19 @@ import HomeScreen from "./screens/home";
 import GalleryScreen from "./screens/gallery";
 import UploadScreen from "./screens/upload";
 import FeedbackScreen from "./screens/feedback";
+import SettingsScreen from "./screens/settings";
+import AboutScreen from "./screens/about";
+import HelpScreen from "./screens/help";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+
+function SettingsTabs() {
+  <Stack.Navigator initialRouteName="Settings">
+
+  </Stack.Navigator>
+}
 
 function HomeTabs() {
   return (
@@ -24,11 +34,14 @@ function HomeTabs() {
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="PreLogin">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Upload" component={UploadScreen} />
         <Stack.Screen name="PreLogin" component={PreLoginScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeTabs} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="About" component={AboutScreen} />
+        <Stack.Screen name="Help" component={HelpScreen} />
         <Stack.Screen name="Feedback" component={FeedbackScreen} />
       </Stack.Navigator>
     </NavigationContainer>
