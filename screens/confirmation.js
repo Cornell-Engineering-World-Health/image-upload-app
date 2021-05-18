@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-import NextButton from "../components/nextButton"
+import * as React from "react";
+import { StyleSheet, View, Text, Image } from "react-native";
+import UploadButton from "../components/uploadButton";
 
 /** Home Screen
- *  Design (Home-1): 
+ *  Design (Home-1):
  * - instructions
  * - image upload button
  * - image capture button.
@@ -11,18 +11,18 @@ import NextButton from "../components/nextButton"
  */
 function ConfirmationScreen({ navigation, route }) {
   const { image } = route.params;
-  console.log(image)
-  const label1 = image.labels[0]
-  const label2 = image.labels[1]
-  const label3 = image.labels[2]
+  console.log(image);
+  const label1 = image.labels[0];
+  const label2 = image.labels[1];
+  const label3 = image.labels[2];
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Image style={style.pic} source={{ uri: image.image_uri }} />
       <Text>Tags:</Text>
       <Text>{label1}</Text>
       <Text>{label2}</Text>
       <Text>{label3}</Text>
-      <NextButton navigation={navigation} txt="UPLOAD" next="Home" />
+      <UploadButton navigation={navigation} image={image}/>
     </View>
   );
 }
@@ -32,5 +32,5 @@ const style = StyleSheet.create({
     width: 300,
     height: 300,
   },
-})
-export default ConfirmationScreen
+});
+export default ConfirmationScreen;
