@@ -11,6 +11,9 @@ import FeedbackScreen from "./screens/feedback";
 import SettingsScreen from "./screens/settings";
 import AboutScreen from "./screens/about";
 import HelpScreen from "./screens/help";
+import CaptureScreen from "./screens/capture";
+import UploadImageScreen from "./screens/uploadimage.js"
+import ConfirmationScreen from "./screens/confirmation.js"
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -43,6 +46,9 @@ function App() {
         <Stack.Screen name="About" component={AboutScreen} />
         <Stack.Screen name="Help" component={HelpScreen} />
         <Stack.Screen name="Feedback" component={FeedbackScreen} />
+        <Stack.Screen name="Capture" component={CaptureScreen} />
+        <Stack.Screen name="Confirmation" component={ConfirmationScreen} />
+        <Stack.Screen name="UploadImageScreen" component={UploadImageScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
