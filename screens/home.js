@@ -16,6 +16,7 @@ function HomeScreen({ navigation }) {
       <Text>Instructions here:</Text>
       <NextButton navigation={navigation} txt="CAPTURE PICTURE" next="Capture" />
       <NextButton navigation={navigation} txt="UPLOAD PICTURE" next="UploadImageScreen" />
+      <NextButton navigation={navigation} txt="Settings" next="Settings" />
     </View>
   );
 }
