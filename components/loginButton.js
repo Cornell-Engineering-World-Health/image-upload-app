@@ -12,7 +12,6 @@ function LoginButton({ navigation, email, password }) {
           .auth()
           .signInWithEmailAndPassword(email, password)
           .then((res) => {
-            console.log(res);
             navigation.navigate("Home");
           })
           .catch((e) => {

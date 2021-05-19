@@ -1,15 +1,16 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import PreLoginScreen from "./screens/prelogin";
 import LoginScreen from "./screens/login";
 import HomeScreen from "./screens/home";
 import GalleryScreen from "./screens/gallery";
 import UploadScreen from "./screens/upload";
 import CaptureScreen from "./screens/capture";
-import UploadImageScreen from "./screens/uploadimage.js"
-import ConfirmationScreen from "./screens/confirmation.js"
+import UploadImageScreen from "./screens/uploadimage.js";
+import ConfirmationScreen from "./screens/confirmation.js";
+import db from "./util/db";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -20,7 +21,7 @@ function HomeTabs() {
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Gallery" component={GalleryScreen} />
     </Tab.Navigator>
-  )
+  );
 }
 
 function App() {
