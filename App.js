@@ -7,6 +7,9 @@ import LoginScreen from "./screens/login";
 import HomeScreen from "./screens/home";
 import GalleryScreen from "./screens/gallery";
 import UploadScreen from "./screens/upload";
+import SettingsScreen from "./screens/settings";
+import AboutScreen from "./screens/about";
+import HelpScreen from "./screens/help";
 import CaptureScreen from "./screens/capture";
 import UploadImageScreen from "./screens/uploadimage.js";
 import ConfirmationScreen from "./screens/confirmation.js";
@@ -32,6 +35,9 @@ function App() {
         <Stack.Screen name="PreLogin" component={PreLoginScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeTabs} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="About" component={AboutScreen} />
+        <Stack.Screen name="Help" component={HelpScreen} />
         <Stack.Screen name="Capture" component={CaptureScreen} />
         <Stack.Screen name="Confirmation" component={ConfirmationScreen} />
         <Stack.Screen name="UploadImageScreen" component={UploadImageScreen} />
