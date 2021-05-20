@@ -18,13 +18,6 @@ import ConfirmationScreen from "./screens/confirmation.js"
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-
-function SettingsTabs() {
-  <Stack.Navigator initialRouteName="Settings">
-
-  </Stack.Navigator>
-}
-
 function HomeTabs() {
   return (
     <Tab.Navigator>
