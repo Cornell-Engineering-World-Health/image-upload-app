@@ -27,7 +27,7 @@ function HomeTabs() {
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="PreLogin">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Upload" component={UploadScreen} />
         <Stack.Screen name="PreLogin" component={PreLoginScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
