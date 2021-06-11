@@ -1,6 +1,7 @@
 import * as React from "react";
 import { View, Text } from "react-native";
 import Header from "../components/header";
+import ReportButton from "../components/reportButton";
 import GridImageView from "react-native-grid-image-viewer";
 import db from "../util/db";
 
@@ -51,9 +52,10 @@ function GalleryScreen({ navigation }) {
   // });
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, marginHorizontal: 20 }}>
       <Header navigation={navigation} screenName={"Images"} />
       <GridImageView data={items} />
+      <ReportButton navigation={navigation} />
     </View>
   );
 }

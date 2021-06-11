@@ -13,7 +13,7 @@ import Header from "../components/header";
  */
 function HomeScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginHorizontal: 20 }}>
       <Header navigation={navigation} screenName={"Hello!"} />
       <Text>Take a picture or select an existing one on your phone to label:</Text>
       <NextButton navigation={navigation} txt="CAPTURE PICTURE" next="Capture" />
