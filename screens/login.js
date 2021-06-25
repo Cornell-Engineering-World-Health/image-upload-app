@@ -31,7 +31,7 @@ function LoginScreen({ navigation }) {
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={style.container}>
-          <Title size={40} align="left">
+          <Title>
             Login
           </Title>
           <Text style={style.username}>Username</Text>
