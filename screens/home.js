@@ -5,7 +5,8 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Title from "../components/title";
 import { StatusBar } from 'expo-status-bar';
-
+import ReportButton from "../components/reportButton";
+import Header from "../components/header";
 /** Home Screen
  *  Design (Home-1):
  * - instructions
@@ -15,42 +16,25 @@ import { StatusBar } from 'expo-status-bar';
  */
 function HomeScreen({ navigation }) {
   return (
-    <View style={styles.screen}>
-      <View style={styles.HomeandSetting}>
-        <Title style={styles.Home}>Home</Title>
-        <Button
-          icon={
-            <Icon
-              name='gear'
-              size={30}
-              color="black"
-            />
-          }
-          type='clear'
-          onPress={() =>
-            navigation.navigate('Settings')}
-        />
-      </View>
-        <Text>Instructions here:</Text>
+    <View style={{ flex: 1, marginHorizontal: 10 }}>
+      <Header navigation={navigation} screenName={"Hello!"} />
+      <View style={style.container}>
+        <Text>Take a picture or select an existing one on your phone to label:</Text>
         <NextButton navigation={navigation} txt="CAPTURE PICTURE" next="Capture" />
         <NextButton navigation={navigation} txt="UPLOAD PICTURE" next="UploadImageScreen" />
+      </View>
+      <ReportButton navigation={navigation} />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+const style = StyleSheet.create({
+  container: {
+    backgroundColor: '#DBE7E7',
+    borderRadius: 10,
+    padding: 20,
+    marginVertical: 10
   },
-  HomeandSetting: {
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  Home: {
-    textAlign: 'left',
-  }
-});
+})
 
 export default HomeScreen

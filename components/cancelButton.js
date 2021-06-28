@@ -5,20 +5,22 @@ import { TouchableOpacity, Text, StyleSheet } from "react-native";
  *  Requires: Starts with capital letter
  *  Creates a button that navigates to [next] screen with [txt] as its title
  */
-function NextButton({ navigation, txt, next }) {
+function CancelButton({ navigation }) {
   return (
     <TouchableOpacity
       style={style.button}
-      onPress={() => navigation.navigate(next)}
+      onPress={() => navigation.goBack()}
     >
-      <Text style={style.buttonText}>{txt}</Text>
+      <Text style={style.buttonText}>CANCEL</Text>
     </TouchableOpacity>
   );
 }
 
 const style = StyleSheet.create({
   button: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#fafafa",
+    borderWidth: 2,
+    borderColor: "#C4C4C4",
     padding: 20,
     borderRadius: 5,
     alignSelf: "stretch",
@@ -30,5 +32,4 @@ const style = StyleSheet.create({
     color: "#000",
   },
 });
-
-export default NextButton;
+export default CancelButton;
