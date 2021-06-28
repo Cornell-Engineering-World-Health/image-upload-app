@@ -30,4 +30,5 @@ const style = StyleSheet.create({
     color: "#000",
   },
 });
+
 export default NextButton;

@@ -17,7 +17,7 @@ function Header({ navigation, screenName }) {
 
 const style = StyleSheet.create({
   headerContainer: {
-    paddingVertical: 20,
+    padding: 20,
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",

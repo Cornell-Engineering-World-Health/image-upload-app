@@ -7,10 +7,18 @@ import { AntDesign } from '@expo/vector-icons';
  */
 function ReportButton({ navigation }) {
   return (
-    <TouchableOpacity onPress={() => navigation.navigate("Report")}>
+    <TouchableOpacity onPress={() => navigation.navigate("Report")} style={style.button}>
       <AntDesign name="questioncircle" size={24} color="black" />
     </TouchableOpacity>
   );
 }
+
+const style = StyleSheet.create({
+  button: {
+    position: 'absolute',
+    right: 10,
+    bottom: 10
+  }
+});
 
 export default ReportButton;

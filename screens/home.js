@@ -13,14 +13,25 @@ import Header from "../components/header";
  */
 function HomeScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginHorizontal: 20 }}>
+    <View style={{ flex: 1, marginHorizontal: 10 }}>
       <Header navigation={navigation} screenName={"Hello!"} />
-      <Text>Take a picture or select an existing one on your phone to label:</Text>
-      <NextButton navigation={navigation} txt="CAPTURE PICTURE" next="Capture" />
-      <NextButton navigation={navigation} txt="UPLOAD PICTURE" next="UploadImageScreen" />
+      <View style={style.container}>
+        <Text>Take a picture or select an existing one on your phone to label:</Text>
+        <NextButton navigation={navigation} txt="CAPTURE PICTURE" next="Capture" />
+        <NextButton navigation={navigation} txt="UPLOAD PICTURE" next="UploadImageScreen" />
+      </View>
       <ReportButton navigation={navigation} />
     </View>
   );
 }
+
+const style = StyleSheet.create({
+  container: {
+    backgroundColor: '#DBE7E7',
+    borderRadius: 10,
+    padding: 20,
+    marginVertical: 10
+  },
+})
 
 export default HomeScreen
