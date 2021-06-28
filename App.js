@@ -11,13 +11,10 @@ import SettingsScreen from "./screens/settings";
 import CaptureScreen from "./screens/capture";
 import UploadImageScreen from "./screens/uploadimage.js";
 import ConfirmationScreen from "./screens/confirmation.js";
-<<<<<<< HEAD
 import SettingsScreen from "./screens/settings.js";
 import HelpScreen from "./screens/help.js";
 import AboutScreen from "./screens/about.js";
-=======
 import ReportScreen from "./screens/report";
->>>>>>> main
 import db from "./util/db";
 
 const Stack = createStackNavigator();
