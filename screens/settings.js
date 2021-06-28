@@ -10,8 +10,6 @@ function SettingsScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Settings</Text>
-      <NextButton navigation={navigation} txt="ABOUT" next="About" />
-      <NextButton navigation={navigation} txt="HELP &amp; SUPPORT" next="Help" />
     </View>
   );
 }
