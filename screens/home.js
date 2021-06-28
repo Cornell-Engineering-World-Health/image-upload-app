@@ -1,11 +1,14 @@
 import * as React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import NextButton from "../components/nextButton";
+import { StyleSheet, Text, View } from 'react-native';
+import NextButton from "../components/nextButton"
+import { Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome'
+import Title from "../components/title";
+import { StatusBar } from 'expo-status-bar';
 import ReportButton from "../components/reportButton";
 import Header from "../components/header";
-
 /** Home Screen
- *  Design (Home-1): 
+ *  Design (Home-1):
  * - instructions
  * - image upload button
  * - image capture button.

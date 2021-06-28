@@ -11,7 +11,13 @@ import SettingsScreen from "./screens/settings";
 import CaptureScreen from "./screens/capture";
 import UploadImageScreen from "./screens/uploadimage.js";
 import ConfirmationScreen from "./screens/confirmation.js";
+<<<<<<< HEAD
+import SettingsScreen from "./screens/settings.js";
+import HelpScreen from "./screens/help.js";
+import AboutScreen from "./screens/about.js";
+=======
 import ReportScreen from "./screens/report";
+>>>>>>> main
 import db from "./util/db";
 
 const Stack = createStackNavigator();
@@ -29,16 +35,56 @@ function HomeTabs() {
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Upload" component={UploadScreen} />
-        <Stack.Screen name="PreLogin" component={PreLoginScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Home" component={HomeTabs} options={{ title: 'Home' }} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
-        <Stack.Screen name="Capture" component={CaptureScreen} />
-        <Stack.Screen name="Confirmation" component={ConfirmationScreen} />
-        <Stack.Screen name="UploadImageScreen" component={UploadImageScreen} />
-        <Stack.Screen name="Report" component={ReportScreen} options={{ headerLeft: () => null }} />
+      <Stack.Navigator
+        initialRouteName="PreLogin"
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen
+          name="Upload"
+          component={UploadScreen}
+        />
+        <Stack.Screen
+          name="PreLogin"
+          component={PreLoginScreen}
+        />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomeTabs}
+        />
+        <Stack.Screen
+          name="Capture"
+          component={CaptureScreen}
+        />
+        <Stack.Screen
+          name="Confirmation"
+          component={ConfirmationScreen}
+        />
+        <Stack.Screen
+          name="UploadImageScreen"
+          component={UploadImageScreen}
+        />
+        <Stack.Screen
+          name="Settings"
+          component={SettingsScreen}
+        />
+        <Stack.Screen
+          name="Help"
+          component={HelpScreen}
+        />
+        <Stack.Screen
+          name="About"
+          component={AboutScreen}
+        />
+        <Stack.Screen
+          name="Report"
+          component={ReportScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

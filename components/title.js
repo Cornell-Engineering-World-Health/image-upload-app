@@ -5,10 +5,11 @@ import { Text, StyleSheet } from "react-native";
 function Title({ children, size, align }) {
   const style = StyleSheet.create({
     titleText: {
-      fontSize: size,
+      fontSize: 40,
       fontWeight: "bold",
       alignSelf: "stretch",
-      textAlign: align,
+      textAlign: 'left',
+      marginHorizontal: 20,
       marginVertical: 10,
     },
   });
