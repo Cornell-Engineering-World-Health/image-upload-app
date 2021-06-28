@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
-import NextButton from "../components/nextButton"
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import NextButton from "../components/nextButton";
+import ReportButton from "../components/reportButton";
+import Header from "../components/header";
 
 /** Home Screen
  *  Design (Home-1): 
@@ -11,12 +13,25 @@ import NextButton from "../components/nextButton"
  */
 function HomeScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home</Text>
-      <Text>Instructions here:</Text>
-      <NextButton navigation={navigation} txt="CAPTURE PICTURE" next="Capture" />
-      <NextButton navigation={navigation} txt="UPLOAD PICTURE" next="UploadImageScreen" />
+    <View style={{ flex: 1, marginHorizontal: 10 }}>
+      <Header navigation={navigation} screenName={"Hello!"} />
+      <View style={style.container}>
+        <Text>Take a picture or select an existing one on your phone to label:</Text>
+        <NextButton navigation={navigation} txt="CAPTURE PICTURE" next="Capture" />
+        <NextButton navigation={navigation} txt="UPLOAD PICTURE" next="UploadImageScreen" />
+      </View>
+      <ReportButton navigation={navigation} />
     </View>
   );
 }
+
+const style = StyleSheet.create({
+  container: {
+    backgroundColor: '#DBE7E7',
+    borderRadius: 10,
+    padding: 20,
+    marginVertical: 10
+  },
+})
+
 export default HomeScreen

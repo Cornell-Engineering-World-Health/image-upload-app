@@ -9,7 +9,6 @@ function Title({ children, size, align }) {
       fontWeight: "bold",
       alignSelf: "stretch",
       textAlign: align,
-      marginHorizontal: 20,
       marginVertical: 10,
     },
   });
