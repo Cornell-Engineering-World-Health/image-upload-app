@@ -6,13 +6,14 @@ import Title from "../components/title";
 /** PreLogin Screen*/
 function PreLoginScreen({ navigation }) {
   return (
-    <View style={style.view}>
+    <View style={style.screen}>
       <Title size={50} align="center">
-        APP NAME
+        AuroImage
       </Title>
       <Text style={style.text}>
-        thematic statement or vision goes here, 1-2 sentences max. Hitting at
-        core, mission, vision, or purpose of this app.
+        By uploading images through AuroImage you are helping us
+        develop a unique device to assist blind and visually impaired
+        individuals.
       </Text>
       <NextButton navigation={navigation} txt="LOGIN" next="Login" />
     </View>
@@ -20,18 +21,18 @@ function PreLoginScreen({ navigation }) {
 }
 
 const style = StyleSheet.create({
-  view: {
+  screen: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#D8EDFA",
     alignItems: "center",
     justifyContent: "center",
+    padding: 20
   },
   text: {
     fontSize: 20,
     color: "#000",
     marginTop: 10,
     marginBottom: 50,
-    marginHorizontal: 20,
   },
 });
 

@@ -18,11 +18,11 @@ function CancelButton({ navigation }) {
 
 const style = StyleSheet.create({
   button: {
-    backgroundColor: "#fafafa",
-    borderWidth: 2,
-    borderColor: "#C4C4C4",
+    backgroundColor: "#FAFAFA",
+    borderWidth: 2.5,
+    borderRadius: 10,
+    borderColor: "#0F2B64",
     padding: 20,
-    borderRadius: 5,
     alignSelf: "stretch",
     marginVertical: 10,
     alignItems: "center",

@@ -9,8 +9,8 @@ function Title({ children, size, align }) {
       fontWeight: "bold",
       alignSelf: "stretch",
       textAlign: 'left',
-      marginHorizontal: 20,
       marginVertical: 10,
+      color: "#0F2B64"
     },
   });
 

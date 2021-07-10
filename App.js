@@ -7,7 +7,6 @@ import LoginScreen from "./screens/login";
 import HomeScreen from "./screens/home";
 import GalleryScreen from "./screens/gallery";
 import UploadScreen from "./screens/upload";
-import SettingsScreen from "./screens/settings";
 import CaptureScreen from "./screens/capture";
 import UploadImageScreen from "./screens/uploadimage.js";
 import ConfirmationScreen from "./screens/confirmation.js";
@@ -33,55 +32,22 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="PreLogin"
+        initialRouteName="Home"
         screenOptions={{
           headerShown: false,
         }}
       >
-        <Stack.Screen
-          name="Upload"
-          component={UploadScreen}
-        />
-        <Stack.Screen
-          name="PreLogin"
-          component={PreLoginScreen}
-        />
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-        />
-        <Stack.Screen
-          name="Home"
-          component={HomeTabs}
-        />
-        <Stack.Screen
-          name="Capture"
-          component={CaptureScreen}
-        />
-        <Stack.Screen
-          name="Confirmation"
-          component={ConfirmationScreen}
-        />
-        <Stack.Screen
-          name="UploadImageScreen"
-          component={UploadImageScreen}
-        />
-        <Stack.Screen
-          name="Settings"
-          component={SettingsScreen}
-        />
-        <Stack.Screen
-          name="Help"
-          component={HelpScreen}
-        />
-        <Stack.Screen
-          name="About"
-          component={AboutScreen}
-        />
-        <Stack.Screen
-          name="Report"
-          component={ReportScreen}
-        />
+        <Stack.Screen name="Upload" component={UploadScreen} />
+        <Stack.Screen name="PreLogin" component={PreLoginScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Home" component={HomeTabs} />
+        <Stack.Screen name="Capture" component={CaptureScreen} />
+        <Stack.Screen name="Confirmation" component={ConfirmationScreen} />
+        <Stack.Screen name="UploadImageScreen" component={UploadImageScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="Help" component={HelpScreen} />
+        <Stack.Screen name="About" component={AboutScreen} />
+        <Stack.Screen name="Report" component={ReportScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

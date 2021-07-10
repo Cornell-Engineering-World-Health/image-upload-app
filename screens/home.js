@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, ScrollView, View } from 'react-native';
 import NextButton from "../components/nextButton"
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -14,26 +14,43 @@ import Header from "../components/header";
  * - image capture button.
  * Requires: on button completion, navigate to upload screen
  */
+
 function HomeScreen({ navigation }) {
+  const [date, setDate] = useState('');
+  useEffect(() => {
+    setDate(
+      new Date().toLocaleDateString()
+    );
+  }, []);
+
   return (
-    <View style={{ flex: 1, marginHorizontal: 10 }}>
+    <ScrollView style={style.screen}>
       <Header navigation={navigation} screenName={"Hello!"} />
+      <View style={style.container}>
+        <Text>{date}</Text>
+        <Text>username</Text>
+      </View>
       <View style={style.container}>
         <Text>Take a picture or select an existing one on your phone to label:</Text>
         <NextButton navigation={navigation} txt="CAPTURE PICTURE" next="Capture" />
         <NextButton navigation={navigation} txt="UPLOAD PICTURE" next="UploadImageScreen" />
       </View>
       <ReportButton navigation={navigation} />
-    </View>
+    </ScrollView>
   );
 }
 
 const style = StyleSheet.create({
-  container: {
-    backgroundColor: '#DBE7E7',
-    borderRadius: 10,
+  screen: {
+    flex: 1,
+    backgroundColor: "#FAFAFA",
     padding: 20,
-    marginVertical: 10
+  },
+  container: {
+    backgroundColor: '#D8EDFA',
+    borderRadius: 10,
+    marginVertical: 10,
+    padding: 20
   },
 })
 

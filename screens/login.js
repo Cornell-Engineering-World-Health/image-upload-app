@@ -27,10 +27,10 @@ function LoginScreen({ navigation }) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={style.container}
+      style={style.view}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={style.container}>
+        <View style={style.screen}>
           <Title>
             Login
           </Title>
@@ -64,12 +64,20 @@ function LoginScreen({ navigation }) {
 }
 
 const style = StyleSheet.create({
-  container: {
+  view: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#fafafa",
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "stretch",
+  },
+  screen: {
+    flex: 1,
+    backgroundColor: "#fafafa",
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "stretch",
+    padding: 20
   },
   username: {
     fontSize: 25,
@@ -77,21 +85,19 @@ const style = StyleSheet.create({
     marginBottom: 10,
     alignSelf: "stretch",
     textAlign: "left",
-    marginHorizontal: 20,
   },
   password: {
     fontSize: 25,
     marginBottom: 10,
     alignSelf: "stretch",
     textAlign: "left",
-    marginHorizontal: 20,
   },
   textInput: {
     height: 50,
-    borderColor: "#000000",
-    borderWidth: 1,
+    borderColor: "#098CDC",
+    borderWidth: 2.5,
+    borderRadius: 10,
     marginBottom: 30,
-    marginHorizontal: 20,
     alignSelf: "stretch",
     paddingHorizontal: 10,
   },
