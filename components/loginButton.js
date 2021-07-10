@@ -27,17 +27,16 @@ function LoginButton({ navigation, email, password }) {
 
 const style = StyleSheet.create({
   button: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#0F2B64",
     padding: 20,
-    borderRadius: 5,
+    borderRadius: 10,
     alignSelf: "stretch",
-    marginHorizontal: 20,
     marginVertical: 10,
     alignItems: "center",
   },
   buttonText: {
     fontSize: 20,
-    color: "#000",
+    color: "#FAFAFA",
   },
 });
 export default LoginButton;
