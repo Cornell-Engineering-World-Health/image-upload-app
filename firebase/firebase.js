@@ -5,7 +5,7 @@ import "firebase/auth";
 //import "firebase/database";
 //import "firebase/firestore";
 //import "firebase/functions";
-//import "firebase/storage";
+import "firebase/storage";
 // import { firebaseConfig } from "./config";
 
 const firebaseConfig = {
