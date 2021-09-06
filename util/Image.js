@@ -1,6 +1,6 @@
 /** [Image] is an image object created from an image uri, a list of labels,
- *  and a metadata object 
-*/
+ *  and a metadata object
+ */
 export class Image_object {
   constructor(image_uri, labels, metadata) {
     this.image_uri = image_uri;
@@ -11,7 +11,7 @@ export class Image_object {
 
 /** [Metadata] is a data object created from a user_id, data object, and
  *  a location string, as well as any other relevant metadata.
-*/
+ */
 export class Metadata {
   constructor(email, user_id, date, location) {
     this.email = email;

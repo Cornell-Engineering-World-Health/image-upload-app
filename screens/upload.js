@@ -44,7 +44,7 @@ function UploadScreen({ route, navigation }) {
       <TouchableOpacity
         style={style.button}
         onPress={() => {
-          var metadata = new Metadata("test@gmail.com", "test@gmail.com", new Date().getDate(), '')
+          var metadata = new Metadata("test@gmail.com", "test@gmail.com", new Date().toLocaleString(), '')
           var image = new Image_object(img.uri, [category1, category2, category3], metadata);
           navigation.navigate("Confirmation", { image: image })
         }}
