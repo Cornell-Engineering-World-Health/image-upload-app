@@ -14,6 +14,7 @@ import SettingsScreen from "./screens/settings.js";
 import HelpScreen from "./screens/help.js";
 import AboutScreen from "./screens/about.js";
 import ReportScreen from "./screens/report";
+import TasksScreen from "./screens/tasks";
 import db from "./util/db";
 
 const Stack = createStackNavigator();
@@ -40,6 +41,7 @@ function App() {
         <Stack.Screen name="Upload" component={UploadScreen} />
         <Stack.Screen name="PreLogin" component={PreLoginScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Tasks" component={TasksScreen} />
         <Stack.Screen name="Home" component={HomeTabs} />
         <Stack.Screen name="Capture" component={CaptureScreen} />
         <Stack.Screen name="Confirmation" component={ConfirmationScreen} />
