@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
-
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 function UploadImageScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
 
   let openImagePickerAsync = async () => {
-    let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    let permissionResult =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (permissionResult.granted === false) {
       alert("Permission to access camera roll is required!");
@@ -16,18 +17,18 @@ function UploadImageScreen({ navigation }) {
     }
 
     let pickerResult = await ImagePicker.launchImageLibraryAsync();
-    navigation.navigate("Upload", { img: pickerResult })
-  }
+    navigation.navigate("Upload", { img: pickerResult });
+  };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => openImagePickerAsync()}>
+        onPress={() => openImagePickerAsync()}
+      >
         <Text style={styles.buttonText}>UPLOAD IMAGE</Text>
       </TouchableOpacity>
-    </View >
-
+    </SafeAreaView>
   );
 }
 
@@ -50,4 +51,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UploadImageScreen
+export default UploadImageScreen;

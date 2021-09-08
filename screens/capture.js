@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-import { Camera } from 'expo-camera';
-
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { Camera } from "expo-camera";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 function CaptureScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -11,17 +11,15 @@ function CaptureScreen({ navigation }) {
 
   const takePic = async () => {
     if (camera) {
-      const data = await camera.takePictureAsync(null)
-      setImage(data.uri)
-      navigation.navigate('Upload', { img: data })
-
+      const data = await camera.takePictureAsync(null);
+      setImage(data.uri);
+      navigation.navigate("Upload", { img: data });
     }
-
-  }
+  };
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
+      setHasPermission(status === "granted");
     })();
   }, []);
   if (hasPermission === null) {
@@ -31,10 +29,14 @@ function CaptureScreen({ navigation }) {
     return <Text>No access to camera</Text>;
   }
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.cameraContainer}>
-        <Camera ref={ref => setCamera(ref)} style={styles.camera} ratio={"4:3"} type={type}>
-        </Camera>
+        <Camera
+          ref={(ref) => setCamera(ref)}
+          style={styles.camera}
+          ratio={"4:3"}
+          type={type}
+        ></Camera>
       </View>
       <TouchableOpacity
         style={styles.button}
@@ -44,23 +46,22 @@ function CaptureScreen({ navigation }) {
               ? Camera.Constants.Type.front
               : Camera.Constants.Type.back
           );
-        }}>
+        }}
+      >
         <Text style={styles.buttonText}>FLIP CAMERA</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => takePic()}>
         <Text style={styles.buttonText}>TAKE PIC</Text>
       </TouchableOpacity>
-    </View>
-
+    </SafeAreaView>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignContent: 'center',
-    alignItems: 'center'
+    alignContent: "center",
+    alignItems: "center",
   },
   camera: {
     flex: 1,
@@ -70,7 +71,6 @@ const styles = StyleSheet.create({
   },
   capture: {
     flex: 1,
-
   },
   cameraContainer: {
     flex: 1,
@@ -91,4 +91,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CaptureScreen
+export default CaptureScreen;
