@@ -5,11 +5,10 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from "react-native";
-import db from "../util/db";
 import { firebase } from "../firebase/firebase";
 import { useState } from "react";
 
-/** _processImage(url) converts a url to its root file name   */
+/** _processImage(url) converts a url to its root file name */
 function _processImage(url) {
   const imageName = url.substring(
     url.lastIndexOf("/") + 1,
@@ -19,20 +18,9 @@ function _processImage(url) {
 }
 
 /** Upload button:
- * 1. upload image and metadata to database [TODO]
- * 2. store image locally in gallery [backlogged]
+ * upload image and metadata to database
  */
 function UploadButton({ navigation, image }) {
-  // React.useEffect(() => {
-  //   db.transaction((tx) => {
-  //     tx.executeSql(
-  //       "create table if not exists gallery (id integer primary key not null, uri text not null);",
-  //       [],
-  //       () => { },
-  //       (_, error) => console.log(error)
-  //     );
-  //   });
-  // }, []);
   const [loading, setLoading] = useState(false);
 
   /** uploadToFirebase(image) creates a reference to the image uri in the
@@ -87,20 +75,8 @@ function UploadButton({ navigation, image }) {
     <TouchableOpacity
       style={style.button}
       onPress={async () => {
-        // 1. upload image and metadata to database [TODO]
-
+        // upload image and metadata to database
         await uploadToFirebase(image);
-
-        // 2. store image locally in gallery
-        // db.transaction((tx) => {
-        //   tx.executeSql(
-        //     "insert into gallery (uri) values (?)",
-        //     [image.image_uri],
-        //     () => { },
-        //     (_, error) => console.log(error)
-        //   );
-        //   console.log(image.image_uri);
-        // });
         navigation.navigate("Home");
       }}
     >
