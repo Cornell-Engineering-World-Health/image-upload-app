@@ -1,6 +1,7 @@
 import * as React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import UploadButton from "../components/uploadButton";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 /** Home Screen
  *  Design (Home-1):
@@ -16,14 +17,14 @@ function ConfirmationScreen({ navigation, route }) {
   const label2 = image.labels[1];
   const label3 = image.labels[2];
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <SafeAreaView style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Image style={style.pic} source={{ uri: image.image_uri }} />
       <Text>Tags:</Text>
       <Text>{label1}</Text>
       <Text>{label2}</Text>
       <Text>{label3}</Text>
       <UploadButton navigation={navigation} image={image}/>
-    </View>
+    </SafeAreaView>
   );
 }
 

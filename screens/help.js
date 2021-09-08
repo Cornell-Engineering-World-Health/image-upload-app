@@ -3,18 +3,19 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import 'react-native-gesture-handler';
 import Title from "../components/title";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 
 function HelpScreen({ navigation }) {
   return (
-    <View style={styles.screen}>
+    <SafeAreaView style={styles.screen}>
       <Title>
         Help & Support
       </Title>
       <Text>
         something
       </Text>
-    </View>
+    </SafeAreaView>
   );
 }
 

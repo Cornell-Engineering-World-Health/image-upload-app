@@ -1,32 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import 'react-native-gesture-handler';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import "react-native-gesture-handler";
 import Title from "../components/title";
-import { Button } from 'react-native-elements';
-import NextButton from "../components/nextButton"
-
+import { Button } from "react-native-elements";
+import NextButton from "../components/nextButton";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 function SettingsScreen({ navigation }) {
   return (
-    <View style={styles.screen}>
-      <Title>
-        Settings
-      </Title>
+    <SafeAreaView style={styles.screen}>
+      <Title>Settings</Title>
       <NextButton navigation={navigation} txt="ABOUT" next="About" />
       <NextButton navigation={navigation} txt="HELP & SUPPORT" next="Help" />
       <NextButton navigation={navigation} txt="LOG OUT" next="PreLogin" />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 20,
   },
   button: {
     backgroundColor: "#C4C4C4",
@@ -43,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SettingsScreen
+export default SettingsScreen;
