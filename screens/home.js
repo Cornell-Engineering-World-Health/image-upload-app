@@ -16,8 +16,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
  * Requires: on button completion, navigate to upload screen
  */
 
-function HomeScreen({ navigation }) {
-  const [date, setDate] = useState("");
+function HomeScreen({ route, navigation }) {
+  const [date, setDate] = useState('');
+  const chosenTask = route.params;
   useEffect(() => {
     setDate(new Date().toLocaleDateString());
   }, []);
@@ -32,6 +33,12 @@ function HomeScreen({ navigation }) {
           <Text>username</Text>
         </View>
 
+        <View style={style.container}>
+          <Text style={style.header}>Today's Task</Text>
+          <Text>{chosenTask}</Text>
+          <NextButton navigation={navigation} txt="CHANGE TASK" next="Tasks" />
+        </View>
+  
         <View style={style.container}>
           <Text>
             Take a picture or select an existing one on your phone to label:
@@ -55,6 +62,12 @@ function HomeScreen({ navigation }) {
 }
 
 const style = StyleSheet.create({
+  header: {
+    fontSize: 30,
+    textAlign: 'left',
+    marginVertical: 10,
+    color: "#0F2B64",
+  },
   screen: {
     flex: 1,
     backgroundColor: "#FAFAFA",

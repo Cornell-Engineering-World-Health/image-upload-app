@@ -12,7 +12,7 @@ function LoginButton({ navigation, email, password }) {
           .auth()
           .signInWithEmailAndPassword(email, password)
           .then((res) => {
-            navigation.navigate("Home");
+            navigation.navigate("Tasks");
           })
           .catch((e) => {
             console.log(e);
