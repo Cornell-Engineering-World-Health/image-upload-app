@@ -18,7 +18,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 function HomeScreen({ route, navigation }) {
   const [date, setDate] = useState('');
-  const chosenTask = route.params;
   useEffect(() => {
     setDate(new Date().toLocaleDateString());
   }, []);
@@ -35,10 +34,10 @@ function HomeScreen({ route, navigation }) {
 
         <View style={style.container}>
           <Text style={style.header}>Today's Task</Text>
-          <Text>{chosenTask}</Text>
+          <Text>{ }</Text>
           <NextButton navigation={navigation} txt="CHANGE TASK" next="Tasks" />
         </View>
-  
+
         <View style={style.container}>
           <Text>
             Take a picture or select an existing one on your phone to label:
