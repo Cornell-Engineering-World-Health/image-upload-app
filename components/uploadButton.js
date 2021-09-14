@@ -58,16 +58,7 @@ function UploadButton({ navigation, image }) {
             console.log("Image Metadata Succesfully Uploaded", md);
             alert("Success!");
             setLoading(false);
-          })
-          .catch((error) => {
-            alert(error);
-            setLoading(false);
           });
-      })
-      .catch((err) => {
-        console.log("ERROR UPLOADING IMAGE", err);
-        alert(err);
-        setLoading(false);
       });
   }
 
@@ -76,7 +67,12 @@ function UploadButton({ navigation, image }) {
       style={style.button}
       onPress={async () => {
         // upload image and metadata to database
-        await uploadToFirebase(image);
+        try {
+          await uploadToFirebase(image);
+        } catch (error) {
+          alert(error);
+          setLoading(false);
+        }
         navigation.navigate("Home");
       }}
     >
