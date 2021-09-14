@@ -8,6 +8,8 @@ import { StatusBar } from "expo-status-bar";
 import ReportButton from "../components/reportButton";
 import Header from "../components/header";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { getUserCurrentTask } from "../firebase/firestore";
+
 /** Home Screen
  *  Design (Home-1):
  * - instructions
@@ -17,11 +19,30 @@ import { SafeAreaView } from "react-native-safe-area-context";
  */
 
 function HomeScreen({ route, navigation }) {
-  const [date, setDate] = useState('');
-  const chosenTask = route.params;
+  const [date, setDate] = useState("");
+  const [chosenTask, setTask] = useState("");
+
   useEffect(() => {
     setDate(new Date().toLocaleDateString());
   }, []);
+
+  useEffect(() => {
+    // if route.params exist (just changed task), don't read from db
+    if (route.params) setTask(route.params.chosenTask);
+    else {
+      getUserCurrentTask("user-email")
+        .then((doc) => {
+          if (doc.exists) {
+            setTask(doc.data()["currentTask"]);
+          } else {
+            alert("User doesn't exist!");
+          }
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    }
+  }, [route.params]);
 
   return (
     <SafeAreaView style={style.screen}>
@@ -38,7 +59,7 @@ function HomeScreen({ route, navigation }) {
           <Text>{chosenTask}</Text>
           <NextButton navigation={navigation} txt="CHANGE TASK" next="Tasks" />
         </View>
-  
+
         <View style={style.container}>
           <Text>
             Take a picture or select an existing one on your phone to label:
@@ -64,7 +85,7 @@ function HomeScreen({ route, navigation }) {
 const style = StyleSheet.create({
   header: {
     fontSize: 30,
-    textAlign: 'left',
+    textAlign: "left",
     marginVertical: 10,
     color: "#0F2B64",
   },
