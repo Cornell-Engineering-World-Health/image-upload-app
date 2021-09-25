@@ -6,7 +6,9 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { firebase } from "../firebase/firebase";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../util/context";
+import { addImageToTask, addImageToUser } from "../firebase/firestore";
 
 /** _processImage(url) converts a url to its root file name */
 function _processImage(url) {
@@ -22,6 +24,7 @@ function _processImage(url) {
  */
 function UploadButton({ navigation, image }) {
   const [loading, setLoading] = useState(false);
+  const [state, dispatch] = useContext(UserContext);
 
   /** uploadToFirebase(image) creates a reference to the image uri in the
    *  firebase storage and uploads an image with imageName as its reference */
@@ -47,18 +50,29 @@ function UploadButton({ navigation, image }) {
 
     // uploads the image to the database
     return storageRef
-      .child("images/" + imageName)
+      .child("images/" + state.task + "/" + imageName)
       .put(blob)
       .then(() => {
         console.log("Image Succesfully Uploaded");
         storageRef
-          .child("images/" + imageName)
+          .child("images/" + state.task + "/" + imageName)
           .updateMetadata(metadata)
           .then((md) => {
             console.log("Image Metadata Succesfully Uploaded", md);
+
+            // update firestore
+            var fullPath = md["fullPath"];
+            console.log(state);
+            addImageToTask(state.task, fullPath, state.user);
+            addImageToUser(state.task, fullPath, state.user);
+
             alert("Success!");
             setLoading(false);
           });
+      })
+      .catch((error) => {
+        alert(error);
+        setLoading(false);
       });
   }
 
