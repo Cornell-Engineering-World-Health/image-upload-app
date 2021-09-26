@@ -17,7 +17,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
  */
 
 function HomeScreen({ route, navigation }) {
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState("");
+  const [chosenTask, setTask] = useState("");
+
   useEffect(() => {
     setDate(new Date().toLocaleDateString());
   }, []);
