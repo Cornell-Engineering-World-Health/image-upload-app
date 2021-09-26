@@ -31,8 +31,8 @@ import { Right } from "native-base";
 function UploadScreen({ route, navigation }) {
   const { img } = route.params;
   console.log(img.uri);
-  const tags = ["Tag 1", "Tag 2", "Tag 3", "Tag 4", "Tag 5", "Tag 6", "Tag 7",
-    "Tag 8", "Tag 9", "Tag 10", "Tag 11", "Tag 12", "Tag 13", "Tag 14"]
+  const tags = ["Label1", "Label2", "Label3", "Label4", "Label5", "Label6", "Label7",
+    "Label8", "Label9", "Label10", "Label11", "Label12", "Label13", "Label14"]
   const [selectedTags, setSelectedTags] = useState({ arr: Array(tags.length).fill(false) })
   const [tagButtonStyles, setTagButtonStyle] = useState({
     arr: Array(tags.length).fill({})
@@ -43,7 +43,7 @@ function UploadScreen({ route, navigation }) {
   const [tagRectangleStyles, setTagRectangleStyles] = useState({
     arr: Array(tags.length).fill({})
   })
-  const [addTag, setCustomTag] = useState(["0"])
+  const [customTags, setCustomTags] = useState(["", "", ""])
   const [addTagButtonStyle, setCustomTagButtonStyle] = useState({ customTags: [style.tagButton] })
   const [addTagTextStyle, setCustomTagTextStyle] = useState({ customTags: [style.tagText] })
   const [addTagRectangleStyle, setCustomTagRectangleStyle] = useState({ customTags: [style.rectangle] })
@@ -89,19 +89,15 @@ function UploadScreen({ route, navigation }) {
       threeOrFour = true;
     }
   }
-  let newTag = addTag.map((item, index) => {
+
+  let newTag = ["0", "1", "2"].map((item, index) => {
     return (
       <View style={addTagRectangleStyle.customTags[index]}>
         <TouchableHighlight style={addTagButtonStyle.customTags[index]}>
-          <TextInput onChangeText={function (customTag) {
-            let temp = addTag
-            if (temp.length == 1) {
-              temp[temp.length - 1] = customTag
-            } else {
-              temp.push(customTag)
-            }
-            setCustomTag(temp)
-            console.log(addTag)
+          <TextInput onChangeText={(customTag) => {
+            let temp = customTags;
+            temp[index] = customTag
+            setCustomTags(temp);
           }}>
           </TextInput>
         </TouchableHighlight>
@@ -170,7 +166,7 @@ function UploadScreen({ route, navigation }) {
         }}>
           <TouchableOpacity onPress={addMore} style={style.addTagButton}>
             <View>
-              <Text style={{ fontSize: "20", margin: 0, color: "white" }}>Add Tag</Text>
+              <Text style={{ fontSize: 17, margin: 5, color: "white" }}>Add Label</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -180,11 +176,18 @@ function UploadScreen({ route, navigation }) {
         activeOpacity={1}
         onPress={() => {
           var tagsData = []
-          tagList.forEach(function (tag) {
-            if (selectedTags[tag]) {
+          var chosenTags = selectedTags.arr
+          tags.forEach(function (tag, index) {
+            if (chosenTags[index] == true) {
               tagsData.push(tag)
             }
           })
+          customTags.forEach(function (tag) {
+            if (tag != "") {
+              tagsData.push(tag)
+            }
+          })
+          console.log(tagsData)
           var metadata = new Metadata(
             "test@gmail.com",
             "test@gmail.com",
@@ -205,7 +208,7 @@ function UploadScreen({ route, navigation }) {
         style={style.cancelButton}
         onPress={() => navigation.navigate("Capture")}
       >
-        <Text style={style.selectedButtonText}>CANCEL</Text>
+        <Text style={style.cancelButtonText}>CANCEL</Text>
       </TouchableOpacity>
     </SafeAreaView >
   );
@@ -232,6 +235,7 @@ const style = StyleSheet.create({
     fontWeight: "500"
   },
   tagButton: {
+    alignItems: "center",
     backgroundColor: "white",
     padding: 7,
     borderRadius: 7,
@@ -270,10 +274,6 @@ const style = StyleSheet.create({
     fontSize: 20,
     color: "#0F2B64",
   },
-  selectedButtonText: {
-    fontSize: 20,
-    color: "#0F2B64"
-  },
   rectangle: {
     height: 45,
     width: 69,
@@ -295,7 +295,7 @@ const style = StyleSheet.create({
     alignItems: "center"
   },
   selectedRectangle: {
-    height: 39,
+    height: 34,
     width: 69,
     marginTop: 10,
     marginBottom: 10,
@@ -305,7 +305,7 @@ const style = StyleSheet.create({
     borderRadius: 6,
   },
   selectedTagText: {
-    fontSize: 16,
+    fontSize: 12,
     backgroundColor: "#0F2B64",
     color: "white",
     borderRadius: 10
@@ -355,7 +355,7 @@ const style = StyleSheet.create({
     marginBottom: 20
   },
   tagText: {
-    fontSize: 16,
+    fontSize: 12,
     backgroundColor: "white",
     color: "#0F2B64",
     borderRadius: 10
