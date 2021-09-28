@@ -45,7 +45,7 @@ function UploadScreen({ route, navigation }) {
   })
   const [customTags, setCustomTags] = useState(["", "", ""])
   const [addTagButtonStyle, setCustomTagButtonStyle] = useState({ customTags: [style.tagButton] })
-  const [addTagTextStyle, setCustomTagTextStyle] = useState({ customTags: [style.tagText] })
+  const [addTagTextStyle, setCustomTagTextStyle] = useState({ customTags: [style.textInput] })
   const [addTagRectangleStyle, setCustomTagRectangleStyle] = useState({ customTags: [style.rectangle] })
 
   const addMore = () => {
@@ -55,7 +55,7 @@ function UploadScreen({ route, navigation }) {
     setCustomTagRectangleStyle({ customTags: addTagRectangleStyleTemp })
     let addTagTextStyleTemp = addTagTextStyle.customTags
     addTagTextStyleTemp[addTagTextStyleTemp.length - 1] = style.selectedTagText
-    addTagTextStyleTemp.push(style.tagText)
+    addTagTextStyleTemp.push(style.textInput)
     setCustomTagTextStyle({ customTags: addTagTextStyleTemp })
     let addTagButtonStyleTemp = addTagButtonStyle.customTags
     addTagButtonStyleTemp[addTagButtonStyleTemp.length - 1] = style.selectedTagButton
@@ -94,12 +94,14 @@ function UploadScreen({ route, navigation }) {
     return (
       <View style={addTagRectangleStyle.customTags[index]}>
         <TouchableHighlight style={addTagButtonStyle.customTags[index]}>
-          <TextInput style={addTagTextStyle.customTags[index]} onChangeText={(customTag) => {
-            let temp = customTags;
-            temp[index] = customTag
-            setCustomTags(temp);
-          }}>
-          </TextInput>
+          <View>
+            <TextInput style={addTagTextStyle.customTags[index]} onChangeText={(customTag) => {
+              let temp = customTags;
+              temp[index] = customTag
+              setCustomTags(temp);
+            }}>
+            </TextInput>
+          </View>
         </TouchableHighlight>
       </View>
     )
@@ -361,6 +363,14 @@ const style = StyleSheet.create({
     backgroundColor: "white",
     color: "#0F2B64",
     borderRadius: 10
+  },
+  textInput: {
+    fontSize: 12,
+    backgroundColor: "white",
+    color: "#0F2B64",
+    borderRadius: 10,
+    height: 16,
+    width: 60
   }
 });
 
