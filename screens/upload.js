@@ -94,7 +94,7 @@ function UploadScreen({ route, navigation }) {
     return (
       <View style={addTagRectangleStyle.customTags[index]}>
         <TouchableHighlight style={addTagButtonStyle.customTags[index]}>
-          <TextInput onChangeText={(customTag) => {
+          <TextInput style={addTagTextStyle.customTags[index]} onChangeText={(customTag) => {
             let temp = customTags;
             temp[index] = customTag
             setCustomTags(temp);
@@ -247,6 +247,7 @@ const style = StyleSheet.create({
     padding: 7,
     borderRadius: 7,
     borderWidth: 3,
+    color: "white",
     borderColor: "#0F2B64",
     alignItems: "center",
   },
@@ -301,6 +302,7 @@ const style = StyleSheet.create({
     marginBottom: 10,
     marginRight: 12,
     backgroundColor: "#0F2B64",
+    color: "white",
     left: 5,
     borderRadius: 6,
   },
