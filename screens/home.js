@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, Text, ScrollView, View } from "react-native";
 import NextButton from "../components/nextButton";
 import { Button } from "react-native-elements";
@@ -68,7 +68,7 @@ function HomeScreen({ route, navigation }) {
 
         <View style={style.container}>
           <Text>{date}</Text>
-          <Text>username</Text>
+          <Text>{user}</Text>
         </View>
 
         <View style={style.container}>
@@ -102,7 +102,7 @@ function HomeScreen({ route, navigation }) {
 const style = StyleSheet.create({
   header: {
     fontSize: 30,
-    textAlign: 'left',
+    textAlign: "left",
     marginVertical: 10,
     color: "#0F2B64",
   },

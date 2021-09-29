@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   TouchableOpacity,
   TouchableHighlight,
@@ -193,8 +193,8 @@ function UploadScreen({ route, navigation }) {
           })
           console.log(tagsData)
           var metadata = new Metadata(
-            "test@gmail.com",
-            "test@gmail.com",
+            state.user,
+            state.user,
             new Date().toLocaleString(),
             ""
           );

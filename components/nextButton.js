@@ -5,7 +5,17 @@ import { TouchableOpacity, Text, StyleSheet } from "react-native";
  *  Requires: Starts with capital letter
  *  Creates a button that navigates to [next] screen with [txt] as its title
  */
-function NextButton({ navigation, txt, next }) {
+function NextButton({ navigation, txt, next, params }) {
+  if (params)
+    return (
+      <TouchableOpacity
+        style={style.button}
+        onPress={() => navigation.navigate(next, params)}
+      >
+        <Text style={style.buttonText}>{txt}</Text>
+      </TouchableOpacity>
+    );
+
   return (
     <TouchableOpacity
       style={style.button}
