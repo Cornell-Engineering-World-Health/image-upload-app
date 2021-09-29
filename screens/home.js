@@ -8,6 +8,9 @@ import { StatusBar } from "expo-status-bar";
 import ReportButton from "../components/reportButton";
 import Header from "../components/header";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { getUserCurrentTask } from "../firebase/firestore";
+import { UserContext } from "../util/context";
+
 /** Home Screen
  *  Design (Home-1):
  * - instructions
@@ -19,6 +22,17 @@ import { SafeAreaView } from "react-native-safe-area-context";
 function HomeScreen({ route, navigation }) {
   const [date, setDate] = useState("");
   const [chosenTask, setTask] = useState("");
+
+
+  const [user, setUser] = useState("");
+  const [state, dispatch] = useContext(UserContext);
+
+  useEffect(() => {
+    if (user.length === 0) {
+      navigation.navigate("PreLogin");
+    }
+  }, []);
+
 
   useEffect(() => {
     setDate(new Date().toLocaleDateString());

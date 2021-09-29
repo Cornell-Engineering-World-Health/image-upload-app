@@ -17,6 +17,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { WhiteBalance } from "expo-camera/build/Camera.types";
 import { Right } from "native-base";
 //import ImageViewer from 'react-native-image-zoom-viewer';
+import { UserContext } from "../util/context";
 
 /** Upload Screen
  *  Design (Upload-1):
@@ -47,6 +48,7 @@ function UploadScreen({ route, navigation }) {
   const [addTagButtonStyle, setCustomTagButtonStyle] = useState({ customTags: [style.tagButton] })
   const [addTagTextStyle, setCustomTagTextStyle] = useState({ customTags: [style.textInput] })
   const [addTagRectangleStyle, setCustomTagRectangleStyle] = useState({ customTags: [style.rectangle] })
+  const [state, dispatch] = useContext(UserContext);
 
   const addMore = () => {
     let addTagRectangleStyleTemp = addTagRectangleStyle.customTags
