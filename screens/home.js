@@ -22,8 +22,6 @@ import { UserContext } from "../util/context";
 function HomeScreen({ route, navigation }) {
   const [date, setDate] = useState("");
   const [chosenTask, setTask] = useState("");
-
-
   const [user, setUser] = useState("");
   const [state, dispatch] = useContext(UserContext);
 
@@ -33,10 +31,35 @@ function HomeScreen({ route, navigation }) {
     }
   }, []);
 
-
   useEffect(() => {
     setDate(new Date().toLocaleDateString());
   }, []);
+
+  useEffect(() => {
+    if (route.params) {
+      var email = route.params.email;
+      if (email.length > 0) {
+        setUser(email);
+
+        getUserCurrentTask(email)
+          .then((doc) => {
+            if (doc.exists) {
+              var task = doc.data()["currentTask"];
+              setTask(task);
+              dispatch({
+                type: "LOGIN",
+                payload: { email: email, task: task },
+              });
+            } else {
+              alert("User doesn't exist!");
+            }
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      }
+    }
+  }, [route.params]);
 
   return (
     <SafeAreaView style={style.screen}>
