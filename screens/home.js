@@ -73,8 +73,8 @@ function HomeScreen({ route, navigation }) {
 
         <View style={style.container}>
           <Text style={style.header}>Today's Task</Text>
-          <Text>{ }</Text>
-          <NextButton navigation={navigation} txt="CHANGE TASK" next="Tasks" />
+          <Text>{chosenTask}</Text>
+          /* <NextButton navigation={navigation} txt="CHANGE TASK" next="Tasks" /> */
         </View>
 
         <View style={style.container}>
