@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   TouchableOpacity,
   StyleSheet,
@@ -12,6 +12,7 @@ import NextButton from "../components/nextButton";
 import { Image_object, Metadata } from "../util/Image";
 import { SafeAreaView } from "react-native-safe-area-context";
 //import ImageViewer from 'react-native-image-zoom-viewer';
+import { UserContext } from "../util/context";
 
 /** Upload Screen
  *  Design (Upload-1):
@@ -29,6 +30,7 @@ function UploadScreen({ route, navigation }) {
   const [category1, newCategory1] = useState("");
   const [category2, newCategory2] = useState("");
   const [category3, newCategory3] = useState("");
+  const [state, dispatch] = useContext(UserContext);
 
   return (
     <SafeAreaView style={style.view}>
@@ -64,9 +66,10 @@ function UploadScreen({ route, navigation }) {
       <TouchableOpacity
         style={style.button}
         onPress={() => {
+          console.log(state);
           var metadata = new Metadata(
-            "test@gmail.com",
-            "test@gmail.com",
+            state.user,
+            state.user,
             new Date().toLocaleString(),
             ""
           );
