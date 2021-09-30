@@ -101,7 +101,7 @@ function UploadButton({ navigation, image }) {
 
 const style = StyleSheet.create({
   button: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#0F2B64",
     padding: 20,
     borderRadius: 5,
     alignSelf: "stretch",
@@ -111,7 +111,7 @@ const style = StyleSheet.create({
   },
   buttonText: {
     fontSize: 20,
-    color: "#000",
+    color: "white",
   },
 });
 export default UploadButton;
