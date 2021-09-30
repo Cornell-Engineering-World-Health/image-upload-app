@@ -12,9 +12,10 @@ export const changeTask = (email, task) => {
 
 export const addImageToTask = (task, imagePath, email) => {
   var ref = db.collection("tasks").doc(task);
-  ref.update({
-    [email]: firebase.firestore.FieldValue.arrayUnion(imagePath),
-  });
+  ref.update(
+    new firebase.firestore.FieldPath(email),
+    firebase.firestore.FieldValue.arrayUnion(imagePath)
+  );
 };
 
 export const addImageToUser = (task, imagePath, email) => {
