@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignContent: "center",
     alignItems: "center",
+    backgroundColor: "#D8EDFA"
   },
   camera: {
     flex: 1,
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   button: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#0F2B64",
     padding: 20,
     borderRadius: 5,
     alignSelf: "stretch",
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 20,
-    color: "#000",
+    color: "white",
   },
 });
 
