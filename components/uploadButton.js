@@ -65,14 +65,7 @@ function UploadButton({ navigation, image }) {
             console.log(state);
             addImageToTask(state.task, fullPath, state.user);
             addImageToUser(state.task, fullPath, state.user);
-
-            alert("Success!");
-            setLoading(false);
           });
-      })
-      .catch((error) => {
-        alert(error);
-        setLoading(false);
       });
   }
 
@@ -83,11 +76,17 @@ function UploadButton({ navigation, image }) {
         // upload image and metadata to database
         try {
           await uploadToFirebase(image);
-        } catch (error) {
-          alert(error);
           setLoading(false);
+          navigation.navigate("Home", {
+            bannerMessage: "Photo uploaded successfully!",
+          });
+        } catch (error) {
+          // alert(error);
+          setLoading(false);
+          navigation.navigate("Home", {
+            bannerMessage: error,
+          });
         }
-        navigation.navigate("Home");
       }}
     >
       {loading ? (
