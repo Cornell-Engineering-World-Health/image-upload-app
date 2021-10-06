@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, Text, ScrollView, View } from "react-native";
 import NextButton from "../components/nextButton";
-import { Button } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome";
-import Title from "../components/title";
-import { StatusBar } from "expo-status-bar";
 import ReportButton from "../components/reportButton";
 import Header from "../components/header";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getUserCurrentTask } from "../firebase/firestore";
 import { UserContext } from "../util/context";
+import { Snackbar } from "react-native-paper";
 
 /** Home Screen
  *  Design (Home-1):
@@ -24,6 +21,11 @@ function HomeScreen({ route, navigation }) {
   const [chosenTask, setTask] = useState("");
   const [user, setUser] = useState("");
   const [state, dispatch] = useContext(UserContext);
+  const [visible, setVisible] = useState(false);
+  const [bannerMessage, setBanner] = useState("");
+
+  const onToggleSnackBar = () => setVisible(!visible);
+  const onDismissSnackBar = () => setVisible(false);
 
   useEffect(() => {
     if (user.length === 0) {
@@ -37,6 +39,7 @@ function HomeScreen({ route, navigation }) {
 
   useEffect(() => {
     if (route.params) {
+      // if navigated from login, set context email and task
       var email = route.params.email;
       if (email.length > 0) {
         setUser(email);
@@ -58,11 +61,20 @@ function HomeScreen({ route, navigation }) {
             alert(error);
           });
       }
+
+      //if navigated from upload, show banner
+      if (route.params.bannerMessage) {
+        setVisible(true);
+        setBanner(route.params.bannerMessage);
+      }
     }
   }, [route.params]);
 
   return (
     <SafeAreaView style={style.screen}>
+      <Snackbar visible={visible} onDismiss={onDismissSnackBar} duration={5000}>
+        {bannerMessage}
+      </Snackbar>
       <ScrollView>
         <Header navigation={navigation} screenName={"Hello!"} />
 
@@ -74,7 +86,7 @@ function HomeScreen({ route, navigation }) {
         <View style={style.container}>
           <Text style={style.header}>Today's Task</Text>
           <Text>{chosenTask}</Text>
-{  /* <NextButton navigation={navigation} txt="CHANGE TASK" next="Tasks" /> */}
+          {/* <NextButton navigation={navigation} txt="CHANGE TASK" next="Tasks" /> */}
         </View>
 
         <View style={style.container}>
