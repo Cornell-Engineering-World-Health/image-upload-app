@@ -94,7 +94,7 @@ function UploadScreen({ route, navigation }) {
 
   let newTag = ["0", "1", "2"].map((item, index) => {
     return (
-      <View style={addTagRectangleStyle.customTags[index]}>
+      <View key={item} style={addTagRectangleStyle.customTags[index]}>
         <TouchableHighlight style={addTagButtonStyle.customTags[index]}>
           <View>
             <TextInput style={addTagTextStyle.customTags[index]} onChangeText={(customTag) => {
@@ -118,9 +118,9 @@ function UploadScreen({ route, navigation }) {
         </View>
         <View style={{ flexDirection: "column" }}>
           {tagList.map((item) =>
-            <View style={{ flexDirection: "row" }}>
-              {item.map((tag) => {
-                return <View style={tagRectangleStyles[tags.indexOf(tag)] || style.rectangle}>
+            <View key={item} style={{ flexDirection: "row" }}>
+              {item.map((tag, index) => {
+                return <View key={tag} style={tagRectangleStyles[tags.indexOf(tag)] || style.rectangle}>
                   <TouchableHighlight
                     onPress={function () {
                       let selectedTagsTemp = selectedTags.arr;
