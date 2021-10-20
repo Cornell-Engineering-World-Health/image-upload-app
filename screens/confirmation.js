@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView } from "react-native";
 import UploadButton from "../components/uploadButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -19,22 +19,24 @@ function ConfirmationScreen({ navigation, route }) {
     <SafeAreaView style={{ flex: 1, alignItems: "center" }}>
       <Text style={style.review}> Review</Text>
       <Text style={style.confirmationText}>Confirm & upload the following {"\n"} image with the labels below:</Text>
-      <View style={style.imageView}>
-        <Image style={style.pic} source={{ uri: image.image_uri }} />
-        <View style={{ flexDirection: "row" }}>
-          <Text style={{ fontSize: 14, fontWeight: "bold", color: "#333333" }}>Labels: </Text>
+      <ScrollView style={style.imageView}>
+        <View style={style.imageView2}>
+          <Image style={style.pic} source={{ uri: image.image_uri }} />
           <View style={{ flexDirection: "row" }}>
-            {labels.map((label, index) => {
-              console.log(label);
-              if (index != labels.length - 1) {
-                return <Text style={{ fontSize: 14, marginRight: 3 }}>{label},</Text>
-              } else {
-                return <Text style={{ fontSize: 14, marginRight: 3 }}>{label}</Text>
-              }
-            })}
+            <Text style={{ fontSize: 14, fontWeight: "bold", color: "#333333" }}>Labels: </Text>
+            <View style={{ flexDirection: "row" }}>
+              {labels.map((label, index) => {
+                console.log(label);
+                if (index != labels.length - 1) {
+                  return <Text style={{ fontSize: 14, marginRight: 3 }}>{label},</Text>
+                } else {
+                  return <Text style={{ fontSize: 14, marginRight: 3 }}>{label}</Text>
+                }
+              })}
+            </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
       <UploadButton navigation={navigation} image={image} />
       <TouchableOpacity
         style={style.editButton}
@@ -55,8 +57,11 @@ function ConfirmationScreen({ navigation, route }) {
 const style = StyleSheet.create({
   imageView: {
     backgroundColor: "#D8EDFA",
+    marginBottom: 5,
     width: 328,
-    height: 328,
+    height: 290,
+  },
+  imageView2: {
     justifyContent: "center",
     alignItems: "center"
   },
@@ -68,14 +73,14 @@ const style = StyleSheet.create({
   review: {
     marginTop: 7,
     color: "#0F2B64",
-    fontSize: 40,
+    fontSize: 35,
     right: 90,
     fontWeight: "bold",
     marginBottom: 10,
   },
   confirmationText: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 18,
     color: "#333333",
     right: 7,
     marginBottom: 7
@@ -92,7 +97,7 @@ const style = StyleSheet.create({
     marginHorizontal: 20,
     marginVertical: 10,
     alignItems: "center",
-    width: 375
+    width: 340
   },
   cancelButtonText: {
     fontSize: 20,
@@ -103,7 +108,7 @@ const style = StyleSheet.create({
     padding: 20,
     borderRadius: 10,
     borderWidth: 5,
-    width: 375,
+    width: 340,
     borderColor: "#0F2B64",
     alignSelf: "center",
     marginVertical: 10,
