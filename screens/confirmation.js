@@ -27,9 +27,9 @@ function ConfirmationScreen({ navigation, route }) {
             {labels.map((label, index) => {
               console.log(label);
               if (index != labels.length - 1) {
-                return <Text style={{ fontSize: 14, marginRight: 3 }}>{label},</Text>
+                return <Text key={label} style={{ fontSize: 14, marginRight: 3 }}>{label},</Text>
               } else {
-                return <Text style={{ fontSize: 14, marginRight: 3 }}>{label}</Text>
+                return <Text key={label} style={{ fontSize: 14, marginRight: 3 }}>{label}</Text>
               }
             })}
           </View>
