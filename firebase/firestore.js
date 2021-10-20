@@ -24,3 +24,7 @@ export const addImageToUser = (task, imagePath, email) => {
     images: firebase.firestore.FieldValue.arrayUnion(imagePath),
   });
 };
+
+export const getLabelsForTask = (task) => {
+  return db.collection("tasks").doc(task).get();
+}

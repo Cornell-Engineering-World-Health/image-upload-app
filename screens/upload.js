@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   TouchableOpacity,
   TouchableHighlight,
@@ -16,6 +16,7 @@ import { Image_object, Metadata } from "../util/Image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { WhiteBalance } from "expo-camera/build/Camera.types";
 import { Right } from "native-base";
+import { getLabelsForTask } from "../firebase/firestore";
 //import ImageViewer from 'react-native-image-zoom-viewer';
 import { UserContext } from "../util/context";
 
@@ -31,9 +32,10 @@ import { UserContext } from "../util/context";
 /** <ImageViewer imageUrls={images} renderIndicator={() => null} /> */
 function UploadScreen({ route, navigation }) {
   const { img } = route.params;
-  console.log(img.uri);
-  const tags = ["Label1", "Label2", "Label3", "Label4", "Label5", "Label6", "Label7",
-    "Label8", "Label9", "Label10", "Label11", "Label12", "Label13", "Label14"]
+  const task = UserContext._currentValue[0]["task"];
+  //console.log(img.uri);
+  const [tags, setTags] = useState([]);
+  //console.log(tags);
   const [selectedTags, setSelectedTags] = useState({ arr: Array(tags.length).fill(false) })
   const [tagButtonStyles, setTagButtonStyle] = useState({
     arr: Array(tags.length).fill({})
@@ -64,6 +66,14 @@ function UploadScreen({ route, navigation }) {
     addTagButtonStyleTemp.push(style.tagButton)
     setCustomTagButtonStyle({ customTags: addTagButtonStyleTemp })
   }
+
+  useEffect(() => {
+    getLabelsForTask(task).then((doc) => {
+      const labels = doc.data()["labels"];
+      setTags(labels);
+    }
+    )
+  })
 
   var length = 0;
   var tagList = [];
@@ -266,7 +276,7 @@ const style = StyleSheet.create({
     alignItems: "center"
   },
   scrollViewHeaderView: {
-    marginTop: 23,
+    marginTop: 9,
     marginBottom: 25,
     marginLeft: 5,
     fontWeight: "bold",
@@ -350,15 +360,15 @@ const style = StyleSheet.create({
     alignItems: "center",
   },
   label: {
-    paddingTop: 10,
-    marginBottom: 15,
+    paddingTop: 9,
+    marginBottom: 9,
     fontSize: 45,
     color: "#0F2B64",
   },
   thumbnail: {
-    width: 100,
-    height: 100,
-    marginBottom: 20
+    width: 135,
+    height: 135,
+    marginBottom: 9
   },
   tagText: {
     fontSize: 12,
