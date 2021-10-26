@@ -1,4 +1,4 @@
-import { firebase, db } from "./firebase";
+import { firebase, db, addDoc, collection } from "./firebase";
 
 export const getUserCurrentTask = (email) => {
   return db.collection("users").doc(email).get();
@@ -27,4 +27,12 @@ export const addImageToUser = (task, imagePath, email) => {
 
 export const getLabelsForTask = (task) => {
   return db.collection("tasks").doc(task).get();
+}
+
+export function uploadBugReport(report, email) {
+  const docRef = db.collection("bugs").add({
+    description: report,
+    user: email
+  });
+  console.log(docRef.id)
 }
