@@ -1,11 +1,25 @@
 import * as React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { uploadBugReport } from '../firebase/firestore'
+import { UserContext } from "../util/context";
 
 /** Custom Component
  *  Requires: Starts with capital letter
  *  Creates a button that navigates to [next] screen with [txt] as its title
  */
-function NextButton({ navigation, txt, next, params }) {
+function NextButton({ navigation, txt, next, params, description, email }) {
+  if (description)
+    return (
+      <TouchableOpacity
+        style={style.button}
+        onPress={function () {
+          uploadBugReport(description.toString(), email)
+          navigation.navigate(next, params)
+        }}
+      >
+        <Text style={style.buttonText}>{txt}</Text>
+      </TouchableOpacity >
+    );
   if (params)
     return (
       <TouchableOpacity
@@ -15,7 +29,6 @@ function NextButton({ navigation, txt, next, params }) {
         <Text style={style.buttonText}>{txt}</Text>
       </TouchableOpacity>
     );
-
   return (
     <TouchableOpacity
       style={style.button}
