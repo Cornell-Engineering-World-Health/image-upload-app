@@ -19,9 +19,10 @@ const windowHeight = Dimensions.get('window').height;
 const style = StyleSheet.create({
   button: {
     position: 'absolute',
-    top: windowHeight / 4 * 3,
-    right: 0,
+    top: windowHeight / 2,
+    right: 66,
     bottom: 0,
+    zIndex: 999
   }
 });
 

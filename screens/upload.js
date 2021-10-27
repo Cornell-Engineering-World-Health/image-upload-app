@@ -12,6 +12,7 @@ import {
   TextInput,
 } from "react-native";
 import NextButton from "../components/nextButton";
+import ReportButton from '../components/reportButton'
 import { Image_object, Metadata } from "../util/Image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { WhiteBalance } from "expo-camera/build/Camera.types";
@@ -120,6 +121,7 @@ function UploadScreen({ route, navigation }) {
   })
   return (
     <SafeAreaView style={style.view}>
+      <ReportButton navigation={navigation} />
       <Text style={style.label}>Label Image</Text>
       <Image style={style.thumbnail} source={{ uri: img.uri }} />
       <ScrollView style={style.scrollView}>
@@ -184,6 +186,7 @@ function UploadScreen({ route, navigation }) {
             </View>
           </TouchableOpacity>
         </View>
+        <ReportButton navigation={navigation} />
       </ScrollView>
       <TouchableOpacity
         style={style.button}
