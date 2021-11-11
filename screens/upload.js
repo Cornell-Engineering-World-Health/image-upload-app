@@ -121,8 +121,10 @@ function UploadScreen({ route, navigation }) {
   })
   return (
     <SafeAreaView style={style.view}>
-      <ReportButton navigation={navigation} />
-      <Text style={style.label}>Label Image</Text>
+      <View style={style.titleandbutton}>
+        <Text style={style.label}>Label Image</Text>
+        <ReportButton navigation={navigation} />
+      </View>
       <Image style={style.thumbnail} source={{ uri: img.uri }} />
       <ScrollView style={style.scrollView}>
         <View style={style.scrollViewHeaderView}>
@@ -186,7 +188,6 @@ function UploadScreen({ route, navigation }) {
             </View>
           </TouchableOpacity>
         </View>
-        <ReportButton navigation={navigation} />
       </ScrollView>
       <TouchableOpacity
         style={style.button}
@@ -367,6 +368,8 @@ const style = StyleSheet.create({
     marginBottom: 9,
     fontSize: 45,
     color: "#0F2B64",
+    textAlign: "center",
+    width: "100%",
   },
   thumbnail: {
     width: 135,
@@ -386,6 +389,12 @@ const style = StyleSheet.create({
     borderRadius: 10,
     height: 16,
     width: 60
+  },
+  titleandbutton: {
+    paddingVertical: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   }
 });
 
