@@ -105,7 +105,6 @@ function HomeScreen({ route, navigation }) {
           />
         </View>
 
-        {/* <ReportButton navigation={navigation} /> */}
       </ScrollView>
     </SafeAreaView>
   );
