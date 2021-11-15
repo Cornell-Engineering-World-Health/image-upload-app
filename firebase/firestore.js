@@ -25,13 +25,6 @@ export const addImageToUser = (task, imagePath, email) => {
   });
 };
 
-export const addTnToUser = (task, imagePath, email) => {
-  var ref = db.collection("users").doc(email);
-  ref.update({
-    thumbnails: firebase.firestore.FieldValue.arrayUnion(imagePath),
-  });
-};
-
 export const getLabelsForTask = (task) => {
   return db.collection("tasks").doc(task).get();
 }
