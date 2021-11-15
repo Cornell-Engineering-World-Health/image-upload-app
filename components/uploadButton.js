@@ -22,7 +22,7 @@ function _processImage(url) {
 /** Upload button:
  * upload image and metadata to database
  */
-function UploadButton({ navigation, image }) {
+ function UploadButton({ navigation, image }) {
   const [loading, setLoading] = useState(false);
   const [state, dispatch] = useContext(UserContext);
 
@@ -34,6 +34,17 @@ function UploadButton({ navigation, image }) {
 
     // converts the image uri into a response object
     const response = await fetch(image.image_uri);
+
+
+    const imageThumbnail = require('image-thumbnail');
+    try {
+      const thumbnail = await imageThumbnail({ uri: response});
+    }
+    catch (err) {
+      console.error(err);
+    }
+
+    const blobTN = await thumbnail.blob();
 
     // converts response into a blob object that can be directly stored in the database
     const blob = await response.blob();
@@ -67,7 +78,26 @@ function UploadButton({ navigation, image }) {
             addImageToUser(state.task, fullPath, state.user);
           });
       });
-  }
+
+    // uploads the thumbnail to the database
+    return storageTN
+      .child("thumbnails/" + state.task + "/" + imageName)
+      .put(blobTN)
+      .then(() => {
+        console.log("Image Succesfully Uploaded");
+        storageRef
+          .child("thumbnails/" + state.task + "/" + imageName)
+          .updateMetadata(metadata)
+          .then((md2) => {
+            console.log("Thumbnail Metadata Succesfully Uploaded", md2);
+
+            // update firestore
+            var fullPath2 = md["fullPath"];
+            console.log(state);
+            addImageToTask(state.task, fullPath2, state.user);
+            addTnToUser(state.task, fullPath2, state.user);
+          });
+      });
 
   return (
     <TouchableOpacity
@@ -96,6 +126,7 @@ function UploadButton({ navigation, image }) {
       )}
     </TouchableOpacity>
   );
+  }
 }
 
 const style = StyleSheet.create({
@@ -113,4 +144,5 @@ const style = StyleSheet.create({
     color: "white",
   },
 });
+
 export default UploadButton;
