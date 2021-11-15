@@ -1,6 +1,7 @@
 import * as React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import NextButton from "../components/nextButton";
+import ForgotButton from "../components/forgotButton";
 import Title from "../components/title";
 
 /** PreLogin Screen*/
@@ -16,7 +17,9 @@ function PreLoginScreen({ navigation }) {
         individuals.
       </Text>
       <NextButton navigation={navigation} txt="LOGIN" next="Login" />
+      <ForgotButton navigation={navigation} />
     </View>
+
   );
 }
 

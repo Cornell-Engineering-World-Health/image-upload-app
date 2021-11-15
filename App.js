@@ -12,7 +12,8 @@ import ConfirmationScreen from "./screens/confirmation.js";
 import SettingsScreen from "./screens/settings.js";
 import HelpScreen from "./screens/help.js";
 import AboutScreen from "./screens/about.js";
-import ReportScreen from "./screens/report";
+import ReportScreen from "./screens/report.js";
+import ForgotScreen from "./screens/forgot.js";
 import { UserContext, initialState } from "./util/context";
 
 const Stack = createStackNavigator();
@@ -52,6 +53,7 @@ function App() {
           />
           <Stack.Screen name="Settings" component={SettingsScreen} />
           <Stack.Screen name="Help" component={HelpScreen} />
+          <Stack.Screen name="Forgot" component={ForgotScreen} />
           <Stack.Screen name="About" component={AboutScreen} />
           <Stack.Screen name="Report" component={ReportScreen} />
         </Stack.Navigator>

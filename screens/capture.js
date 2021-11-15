@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, TouchableHighlight, Image, StatusBar } from "react-native";
 import { Camera } from "expo-camera";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { IconButton, Colors } from 'react-native-paper';
+
+
 
 function CaptureScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -30,65 +35,51 @@ function CaptureScreen({ navigation }) {
   }
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.cameraContainer}>
-        <Camera
-          ref={(ref) => setCamera(ref)}
-          style={styles.camera}
-          ratio={"4:3"}
-          type={type}
-        ></Camera>
-      </View>
+      <Camera
+        ref={(ref) => setCamera(ref)}
+        style={styles.camera}
+        type={type}
+      ></Camera>
       <TouchableOpacity
-        style={styles.button}
+        style = {{ position: 'absolute', alignSelf: 'flex-end', marginTop: 50, paddingHorizontal: 20}}
         onPress={() => {
           setType(
             type === Camera.Constants.Type.back
               ? Camera.Constants.Type.front
               : Camera.Constants.Type.back
-          );
-        }}
-      >
-        <Text style={styles.buttonText}>FLIP CAMERA</Text>
+            );
+          }}
+          >
+          <MaterialIcons name="flip-camera-ios" size={50} color="white" />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => takePic()}>
-        <Text style={styles.buttonText}>TAKE PIC</Text>
-      </TouchableOpacity>
+
+      <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+        <IconButton icon="circle-slice-8" size={80} color= 'white' highlightColor ='red' onPress={()=> takePic()}/>
+      </View>
     </SafeAreaView>
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignContent: "center",
-    alignItems: "center",
-    backgroundColor: "#D8EDFA"
+    flexDirection: 'column',
+    backgroundColor: 'black',
   },
   camera: {
     flex: 1,
-    height: 400,
-    width: 500,
-    aspectRatio: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   capture: {
-    flex: 1,
-  },
-  cameraContainer: {
-    flex: 1,
-    flexDirection: "row",
-  },
-  button: {
-    backgroundColor: "#0F2B64",
-    padding: 20,
+    flex: 0,
+    backgroundColor: '#fff',
     borderRadius: 5,
-    alignSelf: "stretch",
-    marginHorizontal: 20,
-    marginVertical: 10,
-    alignItems: "center",
-  },
-  buttonText: {
-    fontSize: 20,
-    color: "white",
+    padding: 15,
+    paddingHorizontal: 20,
+    alignSelf: 'center',
+    margin: 20,
   },
 });
 
