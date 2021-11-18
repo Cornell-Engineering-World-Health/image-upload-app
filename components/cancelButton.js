@@ -1,5 +1,5 @@
-import * as React from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import * as React from 'react';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 /** Custom Component
  *  Requires: Starts with capital letter
@@ -7,10 +7,7 @@ import { TouchableOpacity, Text, StyleSheet } from "react-native";
  */
 function CancelButton({ navigation }) {
   return (
-    <TouchableOpacity
-      style={style.button}
-      onPress={() => navigation.goBack()}
-    >
+    <TouchableOpacity style={style.button} onPress={() => navigation.goBack()}>
       <Text style={style.buttonText}>CANCEL</Text>
     </TouchableOpacity>
   );
@@ -18,18 +15,18 @@ function CancelButton({ navigation }) {
 
 const style = StyleSheet.create({
   button: {
-    backgroundColor: "#FAFAFA",
+    backgroundColor: '#FAFAFA',
     borderWidth: 2.5,
     borderRadius: 10,
-    borderColor: "#0F2B64",
+    borderColor: '#0F2B64',
     padding: 20,
-    alignSelf: "stretch",
+    alignSelf: 'stretch',
     marginVertical: 10,
-    alignItems: "center",
+    alignItems: 'center',
   },
   buttonText: {
     fontSize: 20,
-    color: "#000",
+    color: '#000',
   },
 });
 export default CancelButton;

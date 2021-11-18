@@ -1,8 +1,8 @@
-import * as React from "react";
-import { StyleSheet, View, Text, Image, ScrollView } from "react-native";
-import UploadButton from "../components/uploadButton";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import * as React from 'react';
+import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
+import UploadButton from '../components/uploadButton';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 /** Home Screen
  *  Design (Home-1):
@@ -13,24 +13,36 @@ import { TouchableOpacity } from "react-native-gesture-handler";
  */
 function ConfirmationScreen({ navigation, route }) {
   const { image } = route.params;
-  console.log(image.labels);
   const labels = image.labels;
   return (
-    <SafeAreaView style={{ flex: 1, alignItems: "center" }}>
+    <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
       <Text style={style.review}> Review</Text>
-      <Text style={style.confirmationText}>Confirm & upload the following {"\n"} image with the labels below:</Text>
+      <Text style={style.confirmationText}>
+        Confirm & upload the following {'\n'} image with the labels below:
+      </Text>
       <ScrollView style={style.imageView}>
         <View style={style.imageView2}>
           <Image style={style.pic} source={{ uri: image.image_uri }} />
-          <View style={{ flexDirection: "row" }}>
-            <Text style={{ fontSize: 14, fontWeight: "bold", color: "#333333" }}>Labels: </Text>
-            <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: 'row' }}>
+            <Text
+              style={{ fontSize: 14, fontWeight: 'bold', color: '#333333' }}
+            >
+              Labels:{' '}
+            </Text>
+            <View style={{ flexDirection: 'row' }}>
               {labels.map((label, index) => {
-                console.log(label);
                 if (index != labels.length - 1) {
-                  return <Text style={{ fontSize: 14, marginRight: 3 }}>{label},</Text>
+                  return (
+                    <Text style={{ fontSize: 14, marginRight: 3 }}>
+                      {label},
+                    </Text>
+                  );
                 } else {
-                  return <Text style={{ fontSize: 14, marginRight: 3 }}>{label}</Text>
+                  return (
+                    <Text style={{ fontSize: 14, marginRight: 3 }}>
+                      {label}
+                    </Text>
+                  );
                 }
               })}
             </View>
@@ -40,79 +52,81 @@ function ConfirmationScreen({ navigation, route }) {
       <UploadButton navigation={navigation} image={image} />
       <TouchableOpacity
         style={style.editButton}
-        onPress={() => navigation.navigate("Upload")}
+        onPress={() => navigation.navigate('Upload')}
       >
         <Text style={style.editButtonText}>EDIT</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={style.cancelButton}
-        onPress={() => navigation.navigate("Capture")}
+        onPress={() =>
+          navigation.navigate('Home', { bannerMessage: 'Upload Canceled!' })
+        }
       >
         <Text style={style.cancelButtonText}>CANCEL</Text>
       </TouchableOpacity>
-    </SafeAreaView >
+    </SafeAreaView>
   );
 }
 
 const style = StyleSheet.create({
   imageView: {
-    backgroundColor: "#D8EDFA",
+    backgroundColor: '#D8EDFA',
     marginBottom: 5,
     width: 328,
     height: 290,
   },
   imageView2: {
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   pic: {
     width: 150,
     height: 242.7,
-    marginBottom: 10
+    marginBottom: 10,
   },
   review: {
     marginTop: 7,
-    color: "#0F2B64",
+    color: '#0F2B64',
     fontSize: 35,
     right: 90,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 10,
   },
   confirmationText: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 18,
-    color: "#333333",
+    color: '#333333',
     right: 7,
-    marginBottom: 7
+    marginBottom: 7,
   },
   editButtonText: {
     fontSize: 20,
-    color: "white",
+    color: 'white',
   },
   editButton: {
-    backgroundColor: "#0F2B64",
+    backgroundColor: '#0F2B64',
     padding: 20,
     borderRadius: 5,
-    alignSelf: "stretch",
+    alignSelf: 'stretch',
     marginHorizontal: 20,
     marginVertical: 10,
-    alignItems: "center",
-    width: 340
+    alignItems: 'center',
+    width: 340,
   },
   cancelButtonText: {
     fontSize: 20,
-    color: "#0F2B64",
+    color: '#0F2B64',
   },
   cancelButton: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,
     borderWidth: 5,
     width: 340,
-    borderColor: "#0F2B64",
-    alignSelf: "center",
+    borderColor: '#0F2B64',
+    alignSelf: 'center',
     marginVertical: 10,
-    alignItems: "center"
-  }
+    alignItems: 'center',
+  },
 });
 export default ConfirmationScreen;

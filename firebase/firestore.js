@@ -1,38 +1,53 @@
-import { firebase, db, addDoc, collection } from "./firebase";
+import { firebase, db } from './firebase';
 
-export const getUserCurrentTask = (email) => {
-  return db.collection("users").doc(email).get();
+export const getLabelsFromTask = async (task) => {
+  return db
+    .collection('tasks')
+    .where('task', '==', task)
+    .get()
+    .then((d) => {
+      let doc = d.docs[0];
+      return {
+        id: doc.id,
+        data: doc.data(),
+      };
+    })
+    .catch((err) => {
+      console.log('ERRORR', err);
+    });
 };
-
-export const changeTask = (email, task) => {
-  return db.collection("users").doc(email).update({
-    currentTask: task,
-  });
-};
-
-export const addImageToTask = (task, imagePath, email) => {
-  var ref = db.collection("tasks").doc(task);
-  ref.update(
-    new firebase.firestore.FieldPath(email),
-    firebase.firestore.FieldValue.arrayUnion(imagePath)
-  );
-};
-
-export const addImageToUser = (task, imagePath, email) => {
-  var ref = db.collection("users").doc(email);
-  ref.update({
-    images: firebase.firestore.FieldValue.arrayUnion(imagePath),
-  });
-};
-
-export const getLabelsForTask = (task) => {
-  return db.collection("tasks").doc(task).get();
-}
 
 export function uploadBugReport(report, email) {
-  const docRef = db.collection("bugs").add({
+  const docRef = db.collection('bugs').add({
     description: report,
-    user: email
+    user: email,
   });
-  console.log(docRef.id)
+  console.log('Upload bug report success');
 }
+
+export function uploadImage(ref, task, userID, labels) {
+  const docRef = db.collection('images').add({
+    ref: ref,
+    task: task,
+    date: firebase.firestore.FieldValue.serverTimestamp(),
+    labels: labels,
+    user: db.doc('users/' + userID),
+  });
+}
+
+export const getUserByEmail = async (email) => {
+  return db
+    .collection('users')
+    .where('email', '==', email)
+    .get()
+    .then((d) => {
+      let doc = d.docs[0];
+      return {
+        id: doc.id,
+        data: doc.data(),
+      };
+    })
+    .catch((err) => {
+      console.log('ERRORR', err);
+    });
+};

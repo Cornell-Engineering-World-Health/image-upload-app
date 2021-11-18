@@ -1,18 +1,10 @@
-import * as React from "react";
-import {
-  ScrollView,
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
-import Title from "../components/title";
-import NextButton from "../components/nextButton";
-import CancelButton from "../components/cancelButton";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { uploadBugReport } from '../firebase/firestore'
-import { UserContext } from "../util/context";
+import * as React from 'react';
+import { ScrollView, Text, StyleSheet, TextInput } from 'react-native';
+import Title from '../components/title';
+import NextButton from '../components/nextButton';
+import CancelButton from '../components/cancelButton';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { UserContext } from '../util/context';
 
 /** Report Screen
  *  Design:
@@ -23,7 +15,7 @@ import { UserContext } from "../util/context";
 function ReportScreen({ navigation }) {
   const [text, onChangeText] = React.useState(null);
 
-  const email = UserContext._currentValue[0]['user']
+  const email = UserContext._currentValue[0]['email'];
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -43,7 +35,13 @@ function ReportScreen({ navigation }) {
           value={text}
           placeholder="Please type your issue here..."
         />
-        <NextButton description={text} email={email} navigation={navigation} txt="SUBMIT" next="Home" />
+        <NextButton
+          description={text}
+          email={email}
+          navigation={navigation}
+          txt="SUBMIT"
+          next="Home"
+        />
         <CancelButton navigation={navigation} />
       </ScrollView>
     </SafeAreaView>
@@ -53,8 +51,8 @@ function ReportScreen({ navigation }) {
 const style = StyleSheet.create({
   input: {
     marginVertical: 10,
-    width: "100%",
-    height: "40%",
+    width: '100%',
+    height: '40%',
     borderWidth: 1,
     borderRadius: 5,
   },

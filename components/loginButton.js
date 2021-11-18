@@ -1,6 +1,7 @@
-import * as React from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
-import { firebase } from "../firebase/firebase";
+import * as React from 'react';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { firebase } from '../firebase/firebase';
+import { getUserByEmail } from '../firebase/firestore';
 
 /** Login button*/
 function LoginButton({ navigation, email, password }) {
@@ -11,8 +12,9 @@ function LoginButton({ navigation, email, password }) {
         firebase
           .auth()
           .signInWithEmailAndPassword(email, password)
-          .then((res) => {
-            navigation.navigate("Home", { email: email }); //navigate to home instead of task selection for now
+          .then(async (res) => {
+            let user = await getUserByEmail(email);
+            navigation.navigate('Home', { user: user });
           })
           .catch((e) => {
             console.log(e);
@@ -27,16 +29,16 @@ function LoginButton({ navigation, email, password }) {
 
 const style = StyleSheet.create({
   button: {
-    backgroundColor: "#0F2B64",
+    backgroundColor: '#0F2B64',
     padding: 20,
     borderRadius: 10,
-    alignSelf: "stretch",
+    alignSelf: 'stretch',
     marginVertical: 10,
-    alignItems: "center",
+    alignItems: 'center',
   },
   buttonText: {
     fontSize: 20,
-    color: "#FAFAFA",
+    color: '#FAFAFA',
   },
 });
 export default LoginButton;

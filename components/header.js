@@ -1,8 +1,8 @@
-import * as React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import SettingsButton from "../components/settingsButton";
-import ReportButton from "../components/reportButton";
-import Title from "../components/title";
+import * as React from 'react';
+import { View, StyleSheet } from 'react-native';
+import SettingsButton from '../components/settingsButton';
+import ReportButton from '../components/reportButton';
+import Title from '../components/title';
 
 /** Title text with style. */
 function Header({ navigation, screenName }) {
@@ -22,15 +22,15 @@ function Header({ navigation, screenName }) {
 const style = StyleSheet.create({
   headerContainer: {
     paddingVertical: 20,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  headerButtons:{
-    flexDirection: "row",
-    justifyContent: "flex-end",
-  }
+  headerButtons: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
 });
 
 export default Header;

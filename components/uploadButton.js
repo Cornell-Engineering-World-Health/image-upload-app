@@ -1,20 +1,20 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   TouchableOpacity,
   Text,
   StyleSheet,
   ActivityIndicator,
-} from "react-native";
-import { firebase } from "../firebase/firebase";
-import { useState, useContext } from "react";
-import { UserContext } from "../util/context";
-import { addImageToTask, addImageToUser } from "../firebase/firestore";
+} from 'react-native';
+import { firebase } from '../firebase/firebase';
+import { useState, useContext } from 'react';
+import { UserContext } from '../util/context';
+import { uploadImage } from '../firebase/firestore';
 
 /** _processImage(url) converts a url to its root file name */
 function _processImage(url) {
   const imageName = url.substring(
-    url.lastIndexOf("/") + 1,
-    url.lastIndexOf(".")
+    url.lastIndexOf('/') + 1,
+    url.lastIndexOf('.')
   );
   return imageName;
 }
@@ -24,7 +24,7 @@ function _processImage(url) {
  */
 function UploadButton({ navigation, image }) {
   const [loading, setLoading] = useState(false);
-  const [state, dispatch] = useContext(UserContext);
+  const [state, _] = useContext(UserContext);
 
   /** uploadToFirebase(image) creates a reference to the image uri in the
    *  firebase storage and uploads an image with imageName as its reference */
@@ -43,29 +43,14 @@ function UploadButton({ navigation, image }) {
     // activate loading indicator
     setLoading(true);
 
-    // metadata
-    var metadata = {
-      customMetadata: image.metadata,
-    };
-
     // uploads the image to the database
     return storageRef
-      .child("images/" + state.task + "/" + imageName)
+      .child('images/' + state.task + '/' + imageName)
       .put(blob)
       .then(() => {
-        console.log("Image Succesfully Uploaded");
-        storageRef
-          .child("images/" + state.task + "/" + imageName)
-          .updateMetadata(metadata)
-          .then((md) => {
-            console.log("Image Metadata Succesfully Uploaded", md);
-
-            // update firestore
-            var fullPath = md["fullPath"];
-            console.log(state);
-            addImageToTask(state.task, fullPath, state.user);
-            addImageToUser(state.task, fullPath, state.user);
-          });
+        let path = 'images/' + state.task + '/' + imageName;
+        console.log('Image Succesfully Uploaded');
+        uploadImage(path, state.task, state.id, image.labels);
       });
   }
 
@@ -77,13 +62,13 @@ function UploadButton({ navigation, image }) {
         try {
           await uploadToFirebase(image);
           setLoading(false);
-          navigation.navigate("Home", {
-            bannerMessage: "Photo uploaded successfully!",
+          navigation.navigate('Home', {
+            bannerMessage: 'Photo uploaded successfully!',
           });
         } catch (error) {
           // alert(error);
           setLoading(false);
-          navigation.navigate("Home", {
+          navigation.navigate('Home', {
             bannerMessage: error,
           });
         }
@@ -100,17 +85,17 @@ function UploadButton({ navigation, image }) {
 
 const style = StyleSheet.create({
   button: {
-    backgroundColor: "#0F2B64",
+    backgroundColor: '#0F2B64',
     padding: 20,
     borderRadius: 5,
-    alignSelf: "stretch",
+    alignSelf: 'stretch',
     marginHorizontal: 20,
     marginVertical: 10,
-    alignItems: "center",
+    alignItems: 'center',
   },
   buttonText: {
     fontSize: 20,
-    color: "white",
+    color: 'white',
   },
 });
 export default UploadButton;
