@@ -1,7 +1,6 @@
-import * as React from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
-import { uploadBugReport } from '../firebase/firestore'
-import { UserContext } from "../util/context";
+import * as React from 'react';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { uploadBugReport } from '../firebase/firestore';
 
 /** Custom Component
  *  Requires: Starts with capital letter
@@ -12,13 +11,13 @@ function NextButton({ navigation, txt, next, params, description, email }) {
     return (
       <TouchableOpacity
         style={style.button}
-        onPress={function () {
-          uploadBugReport(description.toString(), email)
-          navigation.navigate(next, params)
+        onPress={() => {
+          uploadBugReport(description.toString(), email);
+          navigation.navigate(next, params);
         }}
       >
         <Text style={style.buttonText}>{txt}</Text>
-      </TouchableOpacity >
+      </TouchableOpacity>
     );
   if (params)
     return (
@@ -41,16 +40,16 @@ function NextButton({ navigation, txt, next, params, description, email }) {
 
 const style = StyleSheet.create({
   button: {
-    backgroundColor: "#0F2B64",
+    backgroundColor: '#0F2B64',
     padding: 20,
     borderRadius: 10,
-    alignSelf: "stretch",
+    alignSelf: 'stretch',
     marginVertical: 10,
-    alignItems: "center",
+    alignItems: 'center',
   },
   buttonText: {
     fontSize: 20,
-    color: "#FAFAFA",
+    color: '#FAFAFA',
   },
 });
 

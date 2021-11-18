@@ -1,6 +1,6 @@
-import * as React from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
-import { firebase } from "../firebase/firebase";
+import * as React from 'react';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { firebase } from '../firebase/firebase';
 
 /** Login button*/
 function ResetButton({ email }) {
@@ -9,15 +9,17 @@ function ResetButton({ email }) {
       style={style.button}
       onChangeText={(text) => setEmail(text)}
       onPress={() => {
-          firebase.auth().sendPasswordResetEmail(email)
-            .then(function (user) {
-              alert('Please check your email')
-            }).catch(function (e) {
-              console.log(e);
-              alert('The email does not correspond to an existing user');
-            })
-          }
-        }
+        firebase
+          .auth()
+          .sendPasswordResetEmail(email)
+          .then(() => {
+            alert('Please check your email');
+          })
+          .catch((e) => {
+            console.log(e);
+            alert('The email does not correspond to an existing user');
+          });
+      }}
     >
       <Text style={style.buttonText}>Send Email</Text>
     </TouchableOpacity>
@@ -26,16 +28,16 @@ function ResetButton({ email }) {
 
 const style = StyleSheet.create({
   button: {
-    backgroundColor: "#0F2B64",
+    backgroundColor: '#0F2B64',
     padding: 20,
     borderRadius: 10,
-    alignSelf: "center",
+    alignSelf: 'center',
     marginVertical: 10,
-    alignItems: "center",
+    alignItems: 'center',
   },
   buttonText: {
     fontSize: 20,
-    color: "#FAFAFA",
+    color: '#FAFAFA',
   },
 });
 export default ResetButton;

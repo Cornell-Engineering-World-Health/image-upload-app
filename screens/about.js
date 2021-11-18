@@ -1,9 +1,8 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import "react-native-gesture-handler";
-import Title from "../components/title";
-import { SafeAreaView } from "react-native-safe-area-context";
+import React from 'react';
+import { StyleSheet, Text } from 'react-native';
+import 'react-native-gesture-handler';
+import Title from '../components/title';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function AboutScreen({ navigation }) {
   return (
@@ -17,9 +16,9 @@ function AboutScreen({ navigation }) {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

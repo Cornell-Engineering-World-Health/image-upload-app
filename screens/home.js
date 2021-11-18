@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
-import { StyleSheet, Text, ScrollView, View } from "react-native";
-import NextButton from "../components/nextButton";
-import ReportButton from "../components/reportButton";
-import Header from "../components/header";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { getUserCurrentTask } from "../firebase/firestore";
-import { UserContext } from "../util/context";
-import { Snackbar } from "react-native-paper";
+import React, { useState, useEffect, useContext } from 'react';
+import { StyleSheet, Text, ScrollView, View } from 'react-native';
+import NextButton from '../components/nextButton';
+import Header from '../components/header';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { UserContext } from '../util/context';
+import { Snackbar } from 'react-native-paper';
 
 /** Home Screen
  *  Design (Home-1):
@@ -17,19 +15,18 @@ import { Snackbar } from "react-native-paper";
  */
 
 function HomeScreen({ route, navigation }) {
-  const [date, setDate] = useState("");
-  const [chosenTask, setTask] = useState("");
-  const [user, setUser] = useState("");
-  const [state, dispatch] = useContext(UserContext);
+  const [date, setDate] = useState('');
+  const [chosenTask, setTask] = useState('');
+  const [user, setUser] = useState('');
+  const [_, dispatch] = useContext(UserContext);
   const [visible, setVisible] = useState(false);
-  const [bannerMessage, setBanner] = useState("");
+  const [bannerMessage, setBanner] = useState('');
 
-  const onToggleSnackBar = () => setVisible(!visible);
   const onDismissSnackBar = () => setVisible(false);
 
   useEffect(() => {
     if (user.length === 0) {
-      navigation.navigate("PreLogin");
+      navigation.navigate('PreLogin');
     }
   }, []);
 
@@ -40,26 +37,18 @@ function HomeScreen({ route, navigation }) {
   useEffect(() => {
     if (route.params) {
       // if navigated from login, set context email and task
-      var email = route.params.email;
-      if (email.length > 0) {
-        setUser(email);
-
-        getUserCurrentTask(email)
-          .then((doc) => {
-            if (doc.exists) {
-              var task = doc.data()["currentTask"];
-              setTask(task);
-              dispatch({
-                type: "LOGIN",
-                payload: { email: email, task: task },
-              });
-            } else {
-              alert("User doesn't exist!");
-            }
-          })
-          .catch((error) => {
-            alert(error);
-          });
+      var user = route.params.user;
+      if (user.data.email.length > 0) {
+        setUser(user.data.email);
+        setTask(user.data.currentTask);
+        dispatch({
+          type: 'LOGIN',
+          payload: {
+            email: user.data.email,
+            task: user.data.currentTask,
+            id: user.id,
+          },
+        });
       }
 
       //if navigated from upload, show banner
@@ -76,7 +65,7 @@ function HomeScreen({ route, navigation }) {
         {bannerMessage}
       </Snackbar>
       <ScrollView>
-        <Header navigation={navigation} screenName={"Hello!"} />
+        <Header navigation={navigation} screenName={'Hello!'} />
 
         <View style={style.container}>
           <Text>{date}</Text>
@@ -85,8 +74,7 @@ function HomeScreen({ route, navigation }) {
 
         <View style={style.container}>
           <Text style={style.header}>Today's Task</Text>
-          <Text>{chosenTask}</Text>
-          {/* <NextButton navigation={navigation} txt="CHANGE TASK" next="Tasks" /> */}
+          <Text style={style.task}>{chosenTask}</Text>
         </View>
 
         <View style={style.container}>
@@ -104,7 +92,6 @@ function HomeScreen({ route, navigation }) {
             next="UploadImageScreen"
           />
         </View>
-
       </ScrollView>
     </SafeAreaView>
   );
@@ -113,20 +100,25 @@ function HomeScreen({ route, navigation }) {
 const style = StyleSheet.create({
   header: {
     fontSize: 30,
-    textAlign: "left",
+    textAlign: 'left',
     marginVertical: 10,
-    color: "#0F2B64",
+    color: '#0F2B64',
   },
   screen: {
     flex: 1,
-    backgroundColor: "#FAFAFA",
+    backgroundColor: '#FAFAFA',
     padding: 20,
   },
   container: {
-    backgroundColor: "#D8EDFA",
+    backgroundColor: '#D8EDFA',
     borderRadius: 10,
     marginVertical: 10,
     padding: 20,
+  },
+  task: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginLeft: '1%',
   },
 });
 

@@ -1,7 +1,7 @@
-import * as React from "react";
-import { StyleSheet, View, Text } from "react-native";
-import NextButton from "../components/nextButton";
-import { SafeAreaView } from "react-native-safe-area-context";
+import * as React from 'react';
+import { StyleSheet, Text } from 'react-native';
+import NextButton from '../components/nextButton';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 /** Feedback Screen
  *  Design (Feedback-1):
@@ -20,8 +20,8 @@ function FeedbackScreen({ navigation }) {
 const style = StyleSheet.create({
   view: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
