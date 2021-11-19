@@ -10,6 +10,7 @@ import {
   Image,
   Button,
   TextInput,
+  Platform,
 } from "react-native";
 import NextButton from "../components/nextButton";
 import ReportButton from '../components/reportButton'
@@ -184,7 +185,7 @@ function UploadScreen({ route, navigation }) {
         }}>
           <TouchableOpacity onPress={addMore} style={style.addTagButton}>
             <View>
-              <Text style={{ fontSize: 17, margin: 5, color: "white" }}>Add Label</Text>
+              <Text style={style.addlabelbutton}>Add Label</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -253,12 +254,20 @@ const style = StyleSheet.create({
     fontWeight: "500"
   },
   tagButton: {
-    alignItems: "center",
-    backgroundColor: "white",
     padding: 7,
     borderRadius: 7,
     borderWidth: 3,
-    borderColor: "#0F2B64"
+    borderColor: "#0F2B64",
+    ... Platform.select({
+      android: {
+        alignItems: "center",
+        backgroundColor: "white",
+      },
+      ios: {
+        alignItems: "center",
+        backgroundColor: "white",
+      }
+    })
   },
   selectedTagButton: {
     backgroundColor: "#0F2B64",
@@ -269,7 +278,7 @@ const style = StyleSheet.create({
     borderColor: "#0F2B64",
     alignItems: "center",
   },
-  addTagButton: {
+  addTagButton: { //actual style of the "add tag button"
     backgroundColor: "#0F2B64",
     padding: 7,
     width: 100,
@@ -326,9 +335,17 @@ const style = StyleSheet.create({
   },
   selectedTagText: {
     fontSize: 12,
-    backgroundColor: "#0F2B64",
-    color: "white",
-    borderRadius: 10
+    borderRadius: 10,
+    ... Platform.select({
+      android: {
+        backgroundColor: "#0F2B64",
+        color: "white",
+      },
+      ios: {
+        backgroundColor: "#0F2B64",
+        color: "white",
+      }
+    })
   },
   tags_label: {
     paddingTop: 10,
@@ -395,6 +412,23 @@ const style = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  addlabelbutton:{
+    margin: 5, 
+    color: "white",
+    ... Platform.select({
+      android: {
+        fontSize: 15
+      },
+      ios: {
+        fontSize: 17
+      },
+      default: {
+        // other platforms, web for example
+        fontSize:17
+      }
+    })
+
   }
 });
 

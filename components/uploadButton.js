@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   ActivityIndicator,
+  Platform
 } from "react-native";
 import { firebase } from "../firebase/firebase";
 import { useState, useContext } from "react";
@@ -41,7 +42,7 @@ function UploadButton({ navigation, image }) {
     const imageName = _processImage(image.image_uri);
 
     // activate loading indicator
-    setLoading(true);
+    // setLoading(true);
 
     // metadata
     var metadata = {
@@ -76,7 +77,7 @@ function UploadButton({ navigation, image }) {
         // upload image and metadata to database
         try {
           await uploadToFirebase(image);
-          setLoading(false);
+          setLoading(true);
           navigation.navigate("Home", {
             bannerMessage: "Photo uploaded successfully!",
           });
@@ -112,5 +113,6 @@ const style = StyleSheet.create({
     fontSize: 20,
     color: "white",
   },
+  // loadgif:
 });
 export default UploadButton;
