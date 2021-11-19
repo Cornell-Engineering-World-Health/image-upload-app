@@ -8,7 +8,9 @@ import {
 import { firebase } from "../firebase/firebase";
 import { useState, useContext } from "react";
 import { UserContext } from "../util/context";
-import { addImageToTask, addImageToUser } from "../firebase/firestore";
+import { addImageToTask, addImageToUser, addTNToUser, addTNToTask } from "../firebase/firestore";
+import * as ImageManipulator from 'expo-image-manipulator';
+import { ActionResize, manipulateAsync } from 'expo-image-manipulator';
 
 /** _processImage(url) converts a url to its root file name */
 function _processImage(url) {
@@ -23,12 +25,12 @@ function _processImage(url) {
  * upload image and metadata to database
  */
  function UploadButton({ navigation, image }) {
-  const [loading, setLoading] = useState(false);
-  const [state, dispatch] = useContext(UserContext);
+   const [loading, setLoading] = useState(false);
+   const [state, dispatch] = useContext(UserContext);
 
   /** uploadToFirebase(image) creates a reference to the image uri in the
    *  firebase storage and uploads an image with imageName as its reference */
-  async function uploadToFirebase(image) {
+   async function uploadToFirebase(image) {
     // creates the root reference for firebase storage
     const storageRef = firebase.storage().ref();
 
@@ -36,15 +38,10 @@ function _processImage(url) {
     const response = await fetch(image.image_uri);
 
 
-    const imageThumbnail = require('image-thumbnail');
-    try {
-      const thumbnail = await imageThumbnail({ uri: response});
-    }
-    catch (err) {
-      console.error(err);
-    }
 
-    const blobTN = await thumbnail.blob();
+    const thumbnail = await ImageManipulator.manipulateAsync(image.image_uri,[{resize: {width: 50}}],{compress: 0.2});
+    const responseT = await fetch(thumbnail.uri);
+    const blobTN = await responseT.blob();
 
     // converts response into a blob object that can be directly stored in the database
     const blob = await response.blob();
@@ -60,44 +57,47 @@ function _processImage(url) {
     };
 
     // uploads the image to the database
-    return storageRef
-      .child("images/" + state.task + "/" + imageName)
-      .put(blob)
-      .then(() => {
-        console.log("Image Succesfully Uploaded");
-        storageRef
-          .child("images/" + state.task + "/" + imageName)
-          .updateMetadata(metadata)
-          .then((md) => {
-            console.log("Image Metadata Succesfully Uploaded", md);
-
-            // update firestore
-            var fullPath = md["fullPath"];
-            console.log(state);
-            addImageToTask(state.task, fullPath, state.user);
-            addImageToUser(state.task, fullPath, state.user);
-          });
-      });
+    return (
+      storageRef
+        .child("images/" + state.task + "/" + imageName)
+        .put(blob)
+        .then(() => {
+          console.log("Image Succesfully Uploaded");
+          storageRef
+            .child("images/" + state.task + "/" + imageName)
+            .updateMetadata(metadata)
+            .then((md) => {
+              console.log("Image Metadata Succesfully Uploaded", md);
+              // update firestore
+              var fullPath = md["fullPath"];
+              console.log(state);
+              addImageToTask(state.task, fullPath, state.user);
+              addImageToUser(state.task, fullPath, state.user);
+            })
+          })
+        );
 
     // uploads the thumbnail to the database
-    return storageTN
-      .child("thumbnails/" + state.task + "/" + imageName)
-      .put(blobTN)
-      .then(() => {
-        console.log("Image Succesfully Uploaded");
-        storageRef
-          .child("thumbnails/" + state.task + "/" + imageName)
-          .updateMetadata(metadata)
-          .then((md2) => {
-            console.log("Thumbnail Metadata Succesfully Uploaded", md2);
+    return (
+      storageRef
+        .child("thumbnails/" + state.task + "/" + imageName)
+        .put(blobTN)
+        .then(() => {
+          console.log("Image Succesfully Uploaded");
+          storageRef
+            .child("thumbnails/" + state.task + "/" + imageName)
+            .updateMetadata(metadata)
+            .then((md2) => {
+              console.log("Thumbnail Metadata Succesfully Uploaded", md2);
 
-            // update firestore
-            var fullPath2 = md["fullPath"];
-            console.log(state);
-            addImageToTask(state.task, fullPath2, state.user);
-            addTnToUser(state.task, fullPath2, state.user);
-          });
-      });
+              // update firestore
+              var fullPath2 = md["fullPath"];
+              console.log(state);
+              addTNToTask(state.task, fullPath2, state.user);
+              addTnToUser(state.task, fullPath2, state.user);
+            })
+          })
+        );
 
   return (
     <TouchableOpacity
