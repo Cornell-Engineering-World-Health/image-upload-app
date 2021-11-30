@@ -81,9 +81,9 @@ function UploadScreen({ route, navigation }) {
 
   var length = 0;
   var tagList = [];
-  var three = true;
+  var maxLables = true;
   while (length < tags.length) {
-    if (three) {
+    if (maxLables) {
       var newList = [];
       var i = 3;
       while (length < tags.length && i > 0) {
@@ -92,7 +92,7 @@ function UploadScreen({ route, navigation }) {
         length++;
       }
       tagList.push(newList);
-      three = false;
+      maxLables = false;
     } else {
       var newList = [];
       var i = 3;
@@ -102,7 +102,7 @@ function UploadScreen({ route, navigation }) {
         length++;
       }
       tagList.push(newList);
-      three = true;
+      maxLables = true;
     }
   }
 
