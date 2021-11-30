@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import 'react-native-gesture-handler';
 import Title from '../components/title';
 import NextButton from '../components/nextButton';
+import CancelButton from '../components/cancelButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 function SettingsScreen({ navigation }) {
@@ -11,7 +12,8 @@ function SettingsScreen({ navigation }) {
       <Title>Settings</Title>
       <NextButton navigation={navigation} txt="ABOUT" next="About" />
       <NextButton navigation={navigation} txt="HELP & SUPPORT" next="Help" />
-      <NextButton navigation={navigation} txt="LOG OUT" next="PreLogin" />
+      <CancelButton navigation={navigation} />
+      <NextButton navigation={navigation} txt="LOG OUT" next="PreLogin"/> 
     </SafeAreaView>
   );
 }

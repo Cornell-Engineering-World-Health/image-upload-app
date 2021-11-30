@@ -22,7 +22,7 @@ function NextButton({ navigation, txt, next, params, description, email }) {
   if (params)
     return (
       <TouchableOpacity
-        style={style.button}
+        style={txt == "LOG OUT" ? style.logoutbutton:style.button}
         onPress={() => navigation.navigate(next, params)}
       >
         <Text style={style.buttonText}>{txt}</Text>
@@ -30,7 +30,7 @@ function NextButton({ navigation, txt, next, params, description, email }) {
     );
   return (
     <TouchableOpacity
-      style={style.button}
+      style={txt == "LOG OUT" ? style.logoutbutton:style.button}
       onPress={() => navigation.navigate(next)}
     >
       <Text style={style.buttonText}>{txt}</Text>
@@ -50,6 +50,17 @@ const style = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     color: '#FAFAFA',
+  },
+  logoutbutton: {
+    backgroundColor: 'red',
+    padding: 20,
+    borderRadius: 10,
+    alignSelf: 'stretch',
+    marginVertical: 10,
+    alignItems: 'center',
+    marginBottom: 0,
+    position: 'relative',
+    marginTop: '60%',
   },
 });
 
