@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import 'react-native-gesture-handler';
 import Title from '../components/title';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,9 +8,15 @@ import CancelButton from '../components/cancelButton';
 function HelpScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.screen}>
-      <Title>Help & Support</Title>
-      <Text>something</Text>
-      <CancelButton navigation={navigation} />
+      <View style={styles.view}>
+        <Title>Help & Support</Title>
+        <Text style={styles.text}>
+          Please contact help@aurolabs.com for further assistance. If this is
+          concerning a bug, please flag it using the report feature.
+        </Text>
+        <CancelButton navigation={navigation} />
+
+      </View>
     </SafeAreaView>
   );
 }
@@ -21,6 +27,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  view: {
+    marginHorizontal: '5%',
+  },
+  text: {
+    fontSize: 20,
   },
 });
 
