@@ -81,18 +81,18 @@ function UploadScreen({ route, navigation }) {
 
   var length = 0;
   var tagList = [];
-  var threeOrFour = true;
+  var maxLables = true;
   while (length < tags.length) {
-    if (threeOrFour) {
+    if (maxLables) {
       var newList = [];
-      var i = 4;
+      var i = 3;
       while (length < tags.length && i > 0) {
         newList.push(tags[length]);
         i--;
         length++;
       }
       tagList.push(newList);
-      threeOrFour = false;
+      maxLables = false;
     } else {
       var newList = [];
       var i = 3;
@@ -102,7 +102,7 @@ function UploadScreen({ route, navigation }) {
         length++;
       }
       tagList.push(newList);
-      threeOrFour = true;
+      maxLables = true;
     }
   }
 
@@ -209,6 +209,7 @@ function UploadScreen({ route, navigation }) {
             marginRight: 12,
             left: 5,
             borderRadius: 6,
+
           }}
         >
           <TouchableOpacity onPress={addMore} style={style.addTagButton}>
@@ -319,7 +320,7 @@ const style = StyleSheet.create({
   },
   rectangle: {
     height: 45,
-    width: 69,
+    width: '30%',
     marginTop: 10,
     marginBottom: 10,
     marginRight: 12,
@@ -339,7 +340,7 @@ const style = StyleSheet.create({
   },
   selectedRectangle: {
     height: 34,
-    width: 69,
+    width: '30%',
     marginTop: 10,
     marginBottom: 10,
     marginRight: 12,
