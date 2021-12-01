@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import 'react-native-gesture-handler';
 import Title from '../components/title';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import CancelButton from '../components/cancelButton';
 
 function AboutScreen({ navigation }) {
   return (
@@ -13,6 +14,7 @@ function AboutScreen({ navigation }) {
           By uploading images through AuroImage you are helping us develop a
           unique device to assist blind and visually impaired individuals.
         </Text>
+        <CancelButton navigation={navigation} />
       </View>
     </SafeAreaView>
   );

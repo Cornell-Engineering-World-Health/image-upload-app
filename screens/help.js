@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import 'react-native-gesture-handler';
 import Title from '../components/title';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import CancelButton from '../components/cancelButton';
 
 function HelpScreen({ navigation }) {
   return (
@@ -13,6 +14,8 @@ function HelpScreen({ navigation }) {
           Please contact help@aurolabs.com for further assistance. If this is
           concerning a bug, please flag it using the report feature.
         </Text>
+        <CancelButton navigation={navigation} />
+
       </View>
     </SafeAreaView>
   );
