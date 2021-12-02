@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import {
   TouchableOpacity,
   TouchableHighlight,
@@ -54,15 +54,16 @@ function UploadScreen({ route, navigation }) {
   const [addTagRectangleStyle, setCustomTagRectangleStyle] = useState({
     customTags: [style.rectangle, style.rectangle, style.rectangle],
   });
-  const [customTagTrackers, setCustomTagTrackers] = useState(['', '', '']);
 
-  getLabelsFromTask(task)
-    .then((doc) => {
-      setTags(doc.data.labels);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  useEffect(() => {
+    getLabelsFromTask(task)
+      .then((doc) => {
+        setTags(doc.data.labels);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [])
   //this code helps create the special design
   var length = 0;
   var tagList = [];
@@ -95,61 +96,38 @@ function UploadScreen({ route, navigation }) {
   let newTag = ['0', '1', '2'].map((item, index) => {
     return (
       <View key={item} style={addTagRectangleStyle.customTags[index]}>
-        <TouchableHighlight onPress={function () {
-          //update customTagTrackers to keep track of custom labels and change button styling based on if it was selected or not
-          console.log(customTagTrackers)
-          let customTagsTemp = customTags;
-          if (customTagsTemp[index] != '') {
-            customTagsTemp[index] = ''
-            setCustomTags(customTagsTemp)
-          } else {
-            customTagsTemp[index] = customTagTrackers[index]
-            setCustomTags(customTagsTemp)
-          }
-          let addTagButtonStyleTemp = addTagButtonStyle.customTags;
-          if (addTagButtonStyleTemp[index]['backgroundColor'] == "white") {
-            addTagButtonStyleTemp[index] = style.selectedTagButton
-          } else {
-            addTagButtonStyleTemp[index] = style.tagButton
-          }
-          setCustomTagButtonStyle({ customTags: addTagButtonStyleTemp })
-          let addTagTextStyleTemp = addTagTextStyle.customTags;
-          if (addTagTextStyleTemp[index]['backgroundColor'] == "white") {
-            addTagTextStyleTemp[index] = style.selectedTagText
-          } else {
-            addTagTextStyleTemp[index] = style.tagText
-          }
-          setCustomTagTextStyle({ customTags: addTagTextStyleTemp })
-          let addTagRectangleStyleTemp = addTagRectangleStyle.customTags;
-          if (addTagRectangleStyleTemp[index]['height'] == 45) {
-            addTagRectangleStyleTemp[index] = style.selectedRectangle
-          } else {
-            addTagRectangleStyleTemp[index] = style.rectangle
-          }
-          setCustomTagRectangleStyle({ customTags: addTagRectangleStyleTemp })
-        }
-        }
+        <TouchableHighlight
           style={addTagButtonStyle.customTags[index]}>
           <View>
             <TextInput
               style={addTagTextStyle.customTags[index]}
               //update the saved custom labels once a custom label is edited
               onChangeText={(customTag) => {
-                let temp = customTagTrackers;
-                temp[index] = customTag.toLowerCase();
-                setCustomTagTrackers(temp);
-                temp = customTags;
+                let temp = customTags;
                 temp[index] = customTag.toLowerCase();
                 setCustomTags(temp);
-                let addTagButtonStyleTemp = addTagButtonStyle.customTags;
-                addTagButtonStyleTemp[index] = style.tagButton
-                setCustomTagButtonStyle({ customTags: addTagButtonStyleTemp })
-                let addTagTextStyleTemp = addTagTextStyle.customTags;
-                addTagTextStyleTemp[index] = style.tagText
-                setCustomTagTextStyle({ customTags: addTagTextStyleTemp })
-                let addTagRectangleStyleTemp = addTagRectangleStyle.customTags;
-                addTagRectangleStyleTemp[index] = style.rectangle
-                setCustomTagRectangleStyle({ customTags: addTagRectangleStyleTemp })
+                if (customTag != '') {
+                  let addTagButtonStyleTemp = addTagButtonStyle.customTags;
+                  addTagButtonStyleTemp[index] = style.selectedTagButton
+                  setCustomTagButtonStyle({ customTags: addTagButtonStyleTemp })
+                  let addTagTextStyleTemp = addTagTextStyle.customTags;
+                  addTagTextStyleTemp[index] = style.selectedTagText
+                  setCustomTagTextStyle({ customTags: addTagTextStyleTemp })
+                  let addTagRectangleStyleTemp = addTagRectangleStyle.customTags;
+                  addTagRectangleStyleTemp[index] = style.selectedRectangle
+                  setCustomTagRectangleStyle({ customTags: addTagRectangleStyleTemp })
+
+                } else {
+                  let addTagButtonStyleTemp = addTagButtonStyle.customTags;
+                  addTagButtonStyleTemp[index] = style.tagButton
+                  setCustomTagButtonStyle({ customTags: addTagButtonStyleTemp })
+                  let addTagTextStyleTemp = addTagTextStyle.customTags;
+                  addTagTextStyleTemp[index] = style.tagText
+                  setCustomTagTextStyle({ customTags: addTagTextStyleTemp })
+                  let addTagRectangleStyleTemp = addTagRectangleStyle.customTags;
+                  addTagRectangleStyleTemp[index] = style.rectangle
+                  setCustomTagRectangleStyle({ customTags: addTagRectangleStyleTemp })
+                }
 
               }}
             ></TextInput>
@@ -178,10 +156,7 @@ function UploadScreen({ route, navigation }) {
                 return (
                   <View
                     key={tag}
-                    style={
-                      tagRectangleStyles[tags.indexOf(tag)] || style.rectangle
-                    }
-                  >
+                    style={tagRectangleStyles[tags.indexOf(tag)] || style.rectangle}>
                     <TouchableHighlight
                       //this changes the button styling based on if the button was selected or not
                       onPress={function () {
@@ -217,14 +192,10 @@ function UploadScreen({ route, navigation }) {
                         setTagRectangleStyles(tagRectangleStylesTemp);
                       }}
                       style={
-                        tagButtonStyles[tags.indexOf(tag)] || style.tagButton
-                      }
-                    >
+                        tagButtonStyles[tags.indexOf(tag)] || style.tagButton}>
                       <Text
                         style={
-                          tagTextStyles[tags.indexOf(tag)] || style.tagText
-                        }
-                      >
+                          tagTextStyles[tags.indexOf(tag)] || style.tagText}>
                         {tag}
                       </Text>
                     </TouchableHighlight>
