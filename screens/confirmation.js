@@ -14,6 +14,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 function ConfirmationScreen({ navigation, route }) {
   const { image } = route.params;
   const labels = image.labels;
+  var count = 0
   var labelsRows = [];
   var rowList = [];
   var rowLength = 0
@@ -30,6 +31,7 @@ function ConfirmationScreen({ navigation, route }) {
     }
   })
   labelsRows.push(rowList)
+  console.log(labels.length)
   return (
     <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
       <Text style={style.review}> Review</Text>
@@ -49,7 +51,8 @@ function ConfirmationScreen({ navigation, route }) {
               {labelsRows.map((row) => {
                 return <View key={row} style={{ flexDirection: 'row' }}>
                   {row.map((label, index) => {
-                    if (index != labels.length - 1) {
+                    if (count != labels.length - 1) {
+                      count += 1
                       return (
                         <Text key={label} style={{ fontSize: 14, marginRight: 3 }}>
                           {label},
