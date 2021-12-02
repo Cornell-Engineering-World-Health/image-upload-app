@@ -63,7 +63,7 @@ function UploadButton({ navigation, image }) {
       .then(() => {
         let path = 'images/' + state.task + '/' + imageName;
         console.log('Image Succesfully Uploaded');
-        uploadImage(path, state.task, state.id, image.labels);
+        uploadImage(path, state.task, state.id, image.labels, state.email);
         storageRef
           .child('thumbnails/' + state.task + '/' + imageName)
           .put(thumbnail)

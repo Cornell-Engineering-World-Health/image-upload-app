@@ -25,13 +25,14 @@ export function uploadBugReport(report, email) {
   console.log('Upload bug report success');
 }
 
-export function uploadImage(ref, task, userID, labels) {
+export function uploadImage(ref, task, userID, labels, email) {
   const docRef = db.collection('images').add({
     ref: ref,
     task: task,
     date: firebase.firestore.FieldValue.serverTimestamp(),
     labels: labels,
     user: db.doc('users/' + userID),
+    email: email,
   });
 }
 
