@@ -33,13 +33,13 @@ function ConfirmationScreen({ navigation, route }) {
               {labels.map((label, index) => {
                 if (index != labels.length - 1) {
                   return (
-                    <Text key="{label}" style={{ fontSize: 14, marginRight: 3 }}>
-                      {label},
+                    <Text key={label} style={{ fontSize: 14, marginRight: 3 }}>
+                      {label}
                     </Text>
                   );
                 } else {
                   return (
-                    <Text key="{label}" style={{ fontSize: 14, marginRight: 3 }}>
+                    <Text key={label} style={{ fontSize: 14, marginRight: 3 }}>
                       {label}
                     </Text>
                   );
