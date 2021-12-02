@@ -14,6 +14,22 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 function ConfirmationScreen({ navigation, route }) {
   const { image } = route.params;
   const labels = image.labels;
+  var labelsRows = [];
+  var rowList = [];
+  var rowLength = 0
+  labels.forEach(label => {
+    if (rowLength + label.length > 30) {
+      labelsRows.push(rowList)
+      rowLength = 0
+      rowList = []
+      rowLength = rowLength + label.length + 1
+      rowList.push(label)
+    } else {
+      rowLength = rowLength + label.length + 1
+      rowList.push(label)
+    }
+  })
+  labelsRows.push(rowList)
   return (
     <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
       <Text style={style.review}> Review</Text>
@@ -29,21 +45,25 @@ function ConfirmationScreen({ navigation, route }) {
             >
               Labels:{' '}
             </Text>
-            <View style={{ flexDirection: 'row' }}>
-              {labels.map((label, index) => {
-                if (index != labels.length - 1) {
-                  return (
-                    <Text key={label} style={{ fontSize: 14, marginRight: 3 }}>
-                      {label}
-                    </Text>
-                  );
-                } else {
-                  return (
-                    <Text key={label} style={{ fontSize: 14, marginRight: 3 }}>
-                      {label}
-                    </Text>
-                  );
-                }
+            <View style={{ flexDirection: 'column' }}>
+              {labelsRows.map((row) => {
+                return <View key={row} style={{ flexDirection: 'row' }}>
+                  {row.map((label, index) => {
+                    if (index != labels.length - 1) {
+                      return (
+                        <Text key={label} style={{ fontSize: 14, marginRight: 3 }}>
+                          {label},
+                        </Text>
+                      );
+                    } else {
+                      return (
+                        <Text key={label} style={{ fontSize: 14, marginRight: 3 }}>
+                          {label}
+                        </Text>
+                      );
+                    }
+                  })}
+                </View>
               })}
             </View>
           </View>
