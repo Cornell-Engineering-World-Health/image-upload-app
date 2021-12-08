@@ -7,10 +7,21 @@ import CancelButton from '../components/cancelButton';
 
 function HelpScreen({ navigation }) {
   return (
+    // <View style={style.headerContainer}>
+    //   <Title size={40} align="left">
+    //     {screenName}
+    //   </Title>
+    //   <View style={style.headerButtons}>
+    //     <ReportButton navigation={navigation} />
+    //     <SettingsButton navigation={navigation} />
+    //   </View>
+    // </View>
     <SafeAreaView style={styles.screen}>
-      <Title>Help & Support</Title>
+      <SafeAreaView style={styles.cancelbuttonHeader}>
+        <CancelButton navigation={navigation} txt = '<'/>
+        <Title>Help & Support</Title>
+      </SafeAreaView>
       <Text>something</Text>
-      <CancelButton navigation={navigation} />
     </SafeAreaView>
   );
 }
@@ -21,6 +32,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  cancelbuttonHeader: {
+    flexDirection: "row",
   },
 });
 

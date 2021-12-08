@@ -1,4 +1,5 @@
 import { firebase, db } from './firebase';
+// import { collection, query, where } from "../firebase/firestore";
 
 export const getLabelsFromTask = async (task) => {
   return db
@@ -51,3 +52,23 @@ export const getUserByEmail = async (email) => {
       console.log('ERRORR', err);
     });
 };
+
+// don't merge! still trying to get it to work :/
+// export const q = query(collection(db, "images"), where('email', '==', user), where('task', '==', task)).count;
+
+// export const getnumofImagesbyUserandTask = async (userID, task) => {
+//   return db
+//     .collection('images')
+//     .where('user', '==', 'users/' + userID)
+//     .where('task', '==', task)
+//     .get()
+//     .then((d) => {
+//       let doc = d.docs[0];
+//       return {
+//         data: doc.count(),
+//       };
+//     })
+//     .catch((err) => {
+//       console.log('ERRORR', err);
+//     });
+// };

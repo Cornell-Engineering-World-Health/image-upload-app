@@ -42,7 +42,7 @@ function ReportScreen({ navigation }) {
           txt="SUBMIT"
           next="Home"
         />
-        <CancelButton navigation={navigation} />
+        <CancelButton navigation={navigation} txt = "CANCEL"/>
       </ScrollView>
     </SafeAreaView>
   );

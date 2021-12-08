@@ -8,9 +8,11 @@ import CancelButton from '../components/cancelButton';
 function AboutScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.screen}>
-      <Title>About</Title>
+      <SafeAreaView style={styles.cancelbuttonHeader}>
+        <CancelButton navigation={navigation} txt = '<'/>
+        <Title>About</Title>
+      </SafeAreaView>
       <Text>something</Text>
-      <CancelButton navigation={navigation} />
     </SafeAreaView>
   );
 }
@@ -21,6 +23,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  cancelbuttonHeader: {
+    flexDirection: "row",
   },
 });
 
