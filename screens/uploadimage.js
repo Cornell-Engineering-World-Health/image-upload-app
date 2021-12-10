@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import CancelButton from '../components/cancelButton';
+import BackButton from '../components/backButton';
 
 function UploadImageScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -23,16 +23,13 @@ function UploadImageScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <SafeAreaView style={styles.cancelbuttonHeader}>
-        <CancelButton navigation={navigation} txt = '<'/>
-      </SafeAreaView>
+      <BackButton navigation={navigation} />
       <TouchableOpacity
         style={styles.button}
         onPress={() => openImagePickerAsync()}
       >
         <Text style={styles.buttonText}>UPLOAD IMAGE</Text>
       </TouchableOpacity>
-      <CancelButton navigation={navigation} />
     </SafeAreaView>
   );
 }
@@ -55,7 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   cancelbuttonHeader: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
 });
 

@@ -57,7 +57,6 @@ function HomeScreen({ route, navigation }) {
         setBanner(route.params.bannerMessage);
       }
     }
-    
   }, [route.params]);
 
   return (
@@ -75,7 +74,6 @@ function HomeScreen({ route, navigation }) {
 
         <View style={style.container}>
           <Text style={style.header}>Today's Task</Text>
-          <Text style={style.task}>Keep Up the Good Work!</Text>
           <Text style={style.task}>{chosenTask}</Text>
         </View>
 
@@ -119,8 +117,11 @@ const style = StyleSheet.create({
   },
   task: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: '500',
     marginLeft: '1%',
+  },
+  motivation: {
+    fontSize: 15,
   },
 });
 

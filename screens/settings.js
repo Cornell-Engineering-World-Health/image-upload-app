@@ -1,21 +1,17 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import 'react-native-gesture-handler';
-import Title from '../components/title';
 import NextButton from '../components/nextButton';
-import CancelButton from '../components/cancelButton';
+import BackButton from '../components/backButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 function SettingsScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.screen}>
-      <SafeAreaView style={styles.cancelbuttonHeader}>
-        <CancelButton navigation={navigation} txt = "<" />
-        <Title>Settings</Title>
-      </SafeAreaView>
+      <BackButton title={'Settings'} navigation={navigation} />
       <NextButton navigation={navigation} txt="ABOUT" next="About" />
       <NextButton navigation={navigation} txt="HELP & SUPPORT" next="Help" />
-      <NextButton navigation={navigation} txt="LOG OUT" next="PreLogin"/> 
+      <NextButton navigation={navigation} txt="LOG OUT" next="PreLogin" />
     </SafeAreaView>
   );
 }
@@ -42,10 +38,10 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   cancelbuttonHeader: {
-    flexDirection: "row",
+    flexDirection: 'row',
     alignContent: 'flex-start',
     alignItems: 'flex-start',
-    alignSelf: 'flex-start'
+    alignSelf: 'flex-start',
   },
 });
 
