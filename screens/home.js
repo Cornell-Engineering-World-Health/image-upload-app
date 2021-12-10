@@ -5,7 +5,6 @@ import Header from '../components/header';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { UserContext } from '../util/context';
 import { Snackbar } from 'react-native-paper';
-// import { collection, query, where } from "../firebase/firestore";
 
 /** Home Screen
  *  Design (Home-1):
@@ -77,7 +76,6 @@ function HomeScreen({ route, navigation }) {
         <View style={style.container}>
           <Text style={style.header}>Today's Task</Text>
           <Text style={style.task}>Keep Up the Good Work!</Text>
-          {/* <Text>Number of Images uploaded so far: {query(collection("images"), where('email', '==', user), where('task', '==', task)).count}</Text> */}
           <Text style={style.task}>{chosenTask}</Text>
         </View>
 
