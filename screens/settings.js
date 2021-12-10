@@ -24,25 +24,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
   },
-  button: {
-    backgroundColor: '#C4C4C4',
-    padding: 50,
-    borderRadius: 5,
-    alignSelf: 'stretch',
-    marginHorizontal: 20,
-    marginVertical: 10,
-    alignItems: 'center',
-  },
-  buttonText: {
-    fontSize: 20,
-    color: '#000',
-  },
-  cancelbuttonHeader: {
-    flexDirection: 'row',
-    alignContent: 'flex-start',
-    alignItems: 'flex-start',
-    alignSelf: 'flex-start',
-  },
 });
 
 export default SettingsScreen;

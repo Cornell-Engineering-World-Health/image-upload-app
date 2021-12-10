@@ -105,11 +105,11 @@ function UploadButton({ navigation, image }) {
 const style = StyleSheet.create({
   button: {
     backgroundColor: '#0F2B64',
-    padding: 20,
+    padding: '5%',
     borderRadius: 5,
     alignSelf: 'stretch',
-    marginHorizontal: 20,
-    marginVertical: 10,
+    marginHorizontal: '7%',
+    marginVertical: '3%',
     alignItems: 'center',
   },
   buttonText: {

@@ -51,9 +51,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  cancelbuttonHeader: {
-    flexDirection: 'row',
-  },
 });
 
 export default UploadImageScreen;

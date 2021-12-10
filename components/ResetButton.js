@@ -29,10 +29,10 @@ function ResetButton({ email }) {
 const style = StyleSheet.create({
   button: {
     backgroundColor: '#0F2B64',
-    padding: 20,
+    padding: '5%',
     borderRadius: 10,
-    alignSelf: 'center',
-    marginVertical: 10,
+    alignSelf: 'stretch',
+    marginVertical: '3%',
     alignItems: 'center',
   },
   buttonText: {

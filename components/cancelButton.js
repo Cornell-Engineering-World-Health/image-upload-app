@@ -22,9 +22,9 @@ const style = StyleSheet.create({
     borderWidth: 2.5,
     borderRadius: 10,
     borderColor: '#0F2B64',
-    padding: 20,
+    padding: '5%',
     alignSelf: 'stretch',
-    marginVertical: 10,
+    marginVertical: '1%',
     alignItems: 'center',
   },
   cancelbuttonText: {

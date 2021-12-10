@@ -17,10 +17,8 @@ function ForgotButton({ navigation }) {
 
 const style = StyleSheet.create({
   button: {
-    padding: 20,
-    borderRadius: 0,
+    padding: '5%',
     alignSelf: 'stretch',
-    marginVertical: 0,
     alignItems: 'center',
   },
   buttonText: {

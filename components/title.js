@@ -9,7 +9,7 @@ function Title({ children }) {
       fontWeight: 'bold',
       alignSelf: 'stretch',
       textAlign: 'left',
-      marginVertical: 10,
+      marginVertical: '3%',
       color: '#0F2B64',
     },
   });

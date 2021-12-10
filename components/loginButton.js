@@ -30,10 +30,10 @@ function LoginButton({ navigation, email, password }) {
 const style = StyleSheet.create({
   button: {
     backgroundColor: '#0F2B64',
-    padding: 20,
+    padding: '6%',
     borderRadius: 10,
     alignSelf: 'stretch',
-    marginVertical: 10,
+    marginVertical: '1%',
     alignItems: 'center',
   },
   buttonText: {

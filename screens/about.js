@@ -25,9 +25,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  cancelbuttonHeader: {
-    flexDirection: 'row',
-  },
   view: {
     marginHorizontal: '5%',
   },
