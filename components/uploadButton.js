@@ -9,6 +9,7 @@ import { firebase } from '../firebase/firebase';
 import { useState, useContext } from 'react';
 import { UserContext } from '../util/context';
 import { uploadImage } from '../firebase/firestore';
+import { manipulateAsync, SaveFormat } from 'expo-image-manipulator';
 
 /** _processImage(url) converts a url to its root file name */
 function _processImage(url) {
@@ -17,6 +18,16 @@ function _processImage(url) {
     url.lastIndexOf('.')
   );
   return imageName;
+}
+
+async function _processThumbnail(uri) {
+  const thumbnail = await manipulateAsync(uri, [], {
+    compress: 0,
+    format: SaveFormat.JPEG,
+  });
+  const res = await fetch(thumbnail.uri);
+  const blob = await res.blob();
+  return blob;
 }
 
 /** Upload button:
@@ -40,6 +51,8 @@ function UploadButton({ navigation, image }) {
 
     const imageName = _processImage(image.image_uri);
 
+    const thumbnail = await _processThumbnail(image.image_uri);
+
     // activate loading indicator
     setLoading(true);
 
@@ -50,7 +63,13 @@ function UploadButton({ navigation, image }) {
       .then(() => {
         let path = 'images/' + state.task + '/' + imageName;
         console.log('Image Succesfully Uploaded');
-        uploadImage(path, state.task, state.id, image.labels);
+        uploadImage(path, state.task, state.id, image.labels, state.email);
+        storageRef
+          .child('thumbnails/' + state.task + '/' + imageName)
+          .put(thumbnail)
+          .then(() => {
+            console.log('Thumbnail Succesfully Uploaded');
+          });
       });
   }
 

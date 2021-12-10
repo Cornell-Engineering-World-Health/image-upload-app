@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import 'react-native-gesture-handler';
 import Title from '../components/title';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,11 +8,17 @@ import CancelButton from '../components/cancelButton';
 function AboutScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.screen}>
-      <SafeAreaView style={styles.cancelbuttonHeader}>
+      <View style={styles.view}>
+       <SafeAreaView style={styles.cancelbuttonHeader}>
         <CancelButton navigation={navigation} txt = '<'/>
         <Title>About</Title>
       </SafeAreaView>
-      <Text>something</Text>
+        <Text style={styles.text}>
+          By uploading images through AuroImage you are helping us develop a
+          unique device to assist blind and visually impaired individuals.
+        </Text>
+        <CancelButton navigation={navigation} />
+      </View>
     </SafeAreaView>
   );
 }
@@ -26,6 +32,11 @@ const styles = StyleSheet.create({
   },
   cancelbuttonHeader: {
     flexDirection: "row",
+  view: {
+    marginHorizontal: '5%',
+  },
+  text: {
+    fontSize: 20,
   },
 });
 

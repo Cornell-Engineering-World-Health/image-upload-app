@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Datacol",
-    "slug": "datacol",
+    "name": "AuroImage",
+    "slug": "auroimage",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,6 +28,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "Cornell Image Data Collection App"
+    "description": "Aurolabs Image Labeling App"
   }
 }

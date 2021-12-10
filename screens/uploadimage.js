@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Title from '../components/title';
 import CancelButton from '../components/cancelButton';
 
 function UploadImageScreen({ navigation }) {
@@ -33,6 +32,7 @@ function UploadImageScreen({ navigation }) {
       >
         <Text style={styles.buttonText}>UPLOAD IMAGE</Text>
       </TouchableOpacity>
+      <CancelButton navigation={navigation} />
     </SafeAreaView>
   );
 }
