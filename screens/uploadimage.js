@@ -23,6 +23,9 @@ function UploadImageScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.cancelbuttonHeader}>
+        <CancelButton navigation={navigation} txt = '<'/>
+      </SafeAreaView>
       <TouchableOpacity
         style={styles.button}
         onPress={() => openImagePickerAsync()}
@@ -50,6 +53,9 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+  },
+  cancelbuttonHeader: {
+    flexDirection: "row",
   },
 });
 

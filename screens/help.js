@@ -9,7 +9,10 @@ function HelpScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.view}>
-        <Title>Help & Support</Title>
+        <SafeAreaView style={styles.cancelbuttonHeader}>
+          <CancelButton navigation={navigation} txt = '<'/>
+           <Title>Help & Support</Title>
+        </SafeAreaView>
         <Text style={styles.text}>
           Please contact help@aurolabs.com for further assistance. If this is
           concerning a bug, please flag it using the report feature.
@@ -28,6 +31,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  cancelbuttonHeader: {
+    flexDirection: "row",
   view: {
     marginHorizontal: '5%',
   },

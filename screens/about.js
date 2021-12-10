@@ -9,7 +9,10 @@ function AboutScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.view}>
+       <SafeAreaView style={styles.cancelbuttonHeader}>
+        <CancelButton navigation={navigation} txt = '<'/>
         <Title>About</Title>
+      </SafeAreaView>
         <Text style={styles.text}>
           By uploading images through AuroImage you are helping us develop a
           unique device to assist blind and visually impaired individuals.
@@ -27,6 +30,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  cancelbuttonHeader: {
+    flexDirection: "row",
   view: {
     marginHorizontal: '5%',
   },

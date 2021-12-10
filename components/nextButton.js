@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { uploadBugReport } from '../firebase/firestore';
 
 /** Custom Component
  *  Requires: Starts with capital letter
@@ -52,7 +51,7 @@ const style = StyleSheet.create({
     color: '#FAFAFA',
   },
   logoutbutton: {
-    backgroundColor: 'red',
+    backgroundColor: '#B80202',
     padding: 20,
     borderRadius: 10,
     alignSelf: 'stretch',
