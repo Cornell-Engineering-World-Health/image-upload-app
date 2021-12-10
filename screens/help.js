@@ -7,15 +7,6 @@ import CancelButton from '../components/cancelButton';
 
 function HelpScreen({ navigation }) {
   return (
-    // <View style={style.headerContainer}>
-    //   <Title size={40} align="left">
-    //     {screenName}
-    //   </Title>
-    //   <View style={style.headerButtons}>
-    //     <ReportButton navigation={navigation} />
-    //     <SettingsButton navigation={navigation} />
-    //   </View>
-    // </View>
     <SafeAreaView style={styles.screen}>
       <View style={styles.view}>
         <SafeAreaView style={styles.cancelbuttonHeader}>
