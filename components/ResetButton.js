@@ -2,7 +2,6 @@ import * as React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { firebase } from '../firebase/firebase';
 
-/** Login button*/
 function ResetButton({ email }) {
   return (
     <TouchableOpacity
@@ -13,11 +12,10 @@ function ResetButton({ email }) {
           .auth()
           .sendPasswordResetEmail(email)
           .then(() => {
-            alert('Please check your email');
+            alert('Please check your email.');
           })
           .catch((e) => {
-            console.log(e);
-            alert('The email does not correspond to an existing user');
+            alert('The email does not correspond to an existing user.');
           });
       }}
     >
@@ -38,6 +36,7 @@ const style = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     color: '#FAFAFA',
+    fontWeight: 'bold',
   },
 });
 export default ResetButton;

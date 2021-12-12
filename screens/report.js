@@ -1,8 +1,17 @@
 import * as React from 'react';
-import { ScrollView, Text, StyleSheet, TextInput } from 'react-native';
+import {
+  TouchableWithoutFeedback,
+  Text,
+  StyleSheet,
+  TextInput,
+  Keyboard,
+  View,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import Title from '../components/title';
-import NextButton from '../components/nextButton';
-import CancelButton from '../components/cancelButton';
+import BugReportButton from '../components/bugReportButton';
+import BackButton from '../components/backButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { UserContext } from '../util/context';
 
@@ -19,42 +28,53 @@ function ReportScreen({ navigation }) {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView style={{ marginHorizontal: 20 }}>
-        <Title size={40} align="left">
-          Report Issue
-        </Title>
-        <Text>
-          In the box below please provide a short description of any
-          difficulties you experienced in using this app, and we will get in
-          touch with you.
-        </Text>
-        <TextInput
-          multiline
-          style={style.input}
-          onChangeText={onChangeText}
-          value={text}
-          placeholder="Please type your issue here..."
-        />
-        <NextButton
-          description={text}
-          email={email}
-          navigation={navigation}
-          txt="SUBMIT"
-          next="Home"
-        />
-        <CancelButton navigation={navigation} txt = "CANCEL"/>
-      </ScrollView>
+      <BackButton navigation={navigation} />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={style.view}>
+            <Title size={40} align="left">
+              Report Issue
+            </Title>
+            <Text>
+              In the box below, please provide a short description of any
+              difficulties you experienced in using this app and we will get in
+              touch with you.
+            </Text>
+            <TextInput
+              multiline
+              style={style.input}
+              onChangeText={onChangeText}
+              value={text}
+              placeholder="Please type your issue here..."
+            />
+            <BugReportButton
+              description={text}
+              email={email}
+              navigation={navigation}
+            />
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
 
 const style = StyleSheet.create({
   input: {
-    marginVertical: 10,
+    marginVertical: '5%',
     width: '100%',
-    height: '40%',
+    height: '30%',
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 10,
+    textAlign: 'left',
+    padding: '5%',
+    paddingTop: '5%',
+  },
+  view: {
+    marginHorizontal: '5%',
+    marginTop: '5%',
   },
 });
 

@@ -1,38 +1,41 @@
 import * as React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { firebase } from '../firebase/firebase';
-import { getUserByEmail } from '../firebase/firestore';
 
-function LoginButton({ navigation, email, password }) {
+function LogoutButton({ navigation }) {
   return (
     <TouchableOpacity
       style={style.button}
       onPress={() => {
         firebase
           .auth()
-          .signInWithEmailAndPassword(email, password)
-          .then(async (res) => {
-            let user = await getUserByEmail(email);
-            navigation.navigate('Home', { user: user });
+          .signOut()
+          .then(async () => {
+            navigation.navigate('PreLogin');
           })
-          .catch((e) => {
-            alert('Failed to sign in. Try again.');
+          .catch(() => {
+            alert(
+              'Unable to logout at this time. Please check your connection and try again.'
+            );
           });
       }}
     >
-      <Text style={style.buttonText}>LOGIN</Text>
+      <Text style={style.buttonText}>LOGOUT</Text>
     </TouchableOpacity>
   );
 }
 
 const style = StyleSheet.create({
   button: {
-    backgroundColor: '#0F2B64',
-    padding: '6%',
+    backgroundColor: '#098CDC',
+    padding: '5%',
     borderRadius: 10,
     alignSelf: 'stretch',
-    marginVertical: '1%',
+    marginVertical: '3%',
     alignItems: 'center',
+    position: 'relative',
+    marginTop: '40%',
+    marginBottom: '20%',
   },
   buttonText: {
     fontSize: 20,
@@ -40,4 +43,4 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-export default LoginButton;
+export default LogoutButton;

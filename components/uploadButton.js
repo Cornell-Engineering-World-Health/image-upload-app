@@ -30,9 +30,6 @@ async function _processThumbnail(uri) {
   return blob;
 }
 
-/** Upload button:
- * upload image and metadata to database
- */
 function UploadButton({ navigation, image }) {
   const [loading, setLoading] = useState(false);
   const [state, _] = useContext(UserContext);
@@ -62,14 +59,10 @@ function UploadButton({ navigation, image }) {
       .put(blob)
       .then(() => {
         let path = 'images/' + state.task + '/' + imageName;
-        console.log('Image Succesfully Uploaded');
         uploadImage(path, state.task, state.id, image.labels, state.email);
         storageRef
           .child('thumbnails/' + state.task + '/' + imageName)
-          .put(thumbnail)
-          .then(() => {
-            console.log('Thumbnail Succesfully Uploaded');
-          });
+          .put(thumbnail);
       });
   }
 
@@ -79,11 +72,17 @@ function UploadButton({ navigation, image }) {
       onPress={async () => {
         // upload image and metadata to database
         try {
-          await uploadToFirebase(image);
-          setLoading(false);
-          navigation.navigate('Home', {
-            bannerMessage: 'Photo uploaded successfully!',
-          });
+          if (image.labels.length > 0) {
+            await uploadToFirebase(image);
+            setLoading(false);
+            navigation.navigate('Home', {
+              bannerMessage: 'Photo uploaded successfully!',
+            });
+          } else {
+            alert(
+              'Make sure to add labels to the image. Click edit to add labels.'
+            );
+          }
         } catch (error) {
           // alert(error);
           setLoading(false);
@@ -104,17 +103,19 @@ function UploadButton({ navigation, image }) {
 
 const style = StyleSheet.create({
   button: {
-    backgroundColor: '#0F2B64',
+    backgroundColor: '#098CDC',
+    borderWidth: 2.5,
+    borderRadius: 10,
+    borderColor: '#098CDC',
     padding: '5%',
-    borderRadius: 5,
     alignSelf: 'stretch',
-    marginHorizontal: '7%',
-    marginVertical: '3%',
+    marginVertical: '1%',
     alignItems: 'center',
   },
   buttonText: {
     fontSize: 20,
-    color: 'white',
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
 export default UploadButton;

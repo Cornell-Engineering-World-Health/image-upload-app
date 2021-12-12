@@ -1,34 +1,21 @@
 import * as React from 'react';
-import { TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
-import Title from '../components/title';
-import { AntDesign } from '@expo/vector-icons';
+import { TouchableOpacity, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-/** Custom Component
- *  Requires: Starts with capital letter
- *  Creates a button that navigates to [next] screen with [txt] as its title
- */
-function BackButton({ navigation, title }) {
+function BackButton({ navigation }) {
   return (
-    <SafeAreaView style={style.cancelbuttonHeader}>
-      <TouchableOpacity
-        style={style.carrotbutton}
-        onPress={() => navigation.goBack()}
-      >
-        <AntDesign name="back" size={32} color="black" />
-      </TouchableOpacity>
-      <Title>{title}</Title>
-    </SafeAreaView>
+    <TouchableOpacity style={style.button} onPress={navigation.goBack}>
+      <Ionicons name="md-chevron-back-circle" size={36} color="#0F2B64" />
+    </TouchableOpacity>
   );
 }
 
 const style = StyleSheet.create({
-  cancelbuttonHeader: {
-    flexDirection: 'row',
-  },
-  carrotbutton: {
-    alignItems: 'flex-start',
-    marginRight: '5%',
-    alignSelf: 'center',
+  button: {
+    top: '10%',
+    left: '5%',
+    position: 'absolute',
+    zIndex: 1,
   },
 });
 export default BackButton;

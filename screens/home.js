@@ -1,18 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { StyleSheet, Text, ScrollView, View } from 'react-native';
+import { StyleSheet, Text, ScrollView, View, Dimensions } from 'react-native';
 import NextButton from '../components/nextButton';
 import Header from '../components/header';
+import OpenCameraRollButton from '../components/openCameraRollButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { UserContext } from '../util/context';
 import { Snackbar } from 'react-native-paper';
-
-/** Home Screen
- *  Design (Home-1):
- * - instructions
- * - image upload button
- * - image capture button.
- * Requires: on button completion, navigate to upload screen
- */
 
 function HomeScreen({ route, navigation }) {
   const [date, setDate] = useState('');
@@ -51,7 +44,7 @@ function HomeScreen({ route, navigation }) {
         });
       }
 
-      //if navigated from upload, show banner
+      // if navigated from upload, show banner
       if (route.params.bannerMessage) {
         setVisible(true);
         setBanner(route.params.bannerMessage);
@@ -74,7 +67,10 @@ function HomeScreen({ route, navigation }) {
 
         <View style={style.container}>
           <Text style={style.header}>Today's Task</Text>
-          <Text style={style.task}>{chosenTask}</Text>
+          <View style={style.taskContainer}>
+            <Text style={style.text}>Please take pictures of: </Text>
+            <Text style={style.task}>{chosenTask}</Text>
+          </View>
         </View>
 
         <View style={style.container}>
@@ -86,11 +82,7 @@ function HomeScreen({ route, navigation }) {
             txt="CAPTURE PICTURE"
             next="Capture"
           />
-          <NextButton
-            navigation={navigation}
-            txt="UPLOAD PICTURE"
-            next="UploadImageScreen"
-          />
+          <OpenCameraRollButton navigation={navigation} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -101,27 +93,28 @@ const style = StyleSheet.create({
   header: {
     fontSize: 30,
     textAlign: 'left',
-    marginVertical: 10,
     color: '#0F2B64',
+    marginBottom: '2%',
   },
   screen: {
     flex: 1,
     backgroundColor: '#FAFAFA',
-    padding: 20,
+    paddingHorizontal: Dimensions.get('window').width / 20,
   },
   container: {
     backgroundColor: '#D8EDFA',
     borderRadius: 10,
-    marginVertical: 10,
-    padding: 20,
+    marginVertical: '3%',
+    padding: '5%',
   },
-  task: {
-    fontSize: 20,
-    fontWeight: '500',
+  text: {
     marginLeft: '1%',
   },
-  motivation: {
-    fontSize: 15,
+  task: {
+    fontWeight: 'bold',
+  },
+  taskContainer: {
+    flexDirection: 'row',
   },
 });
 

@@ -56,14 +56,10 @@ function UploadScreen({ route, navigation }) {
   });
 
   useEffect(() => {
-    getLabelsFromTask(task)
-      .then((doc) => {
-        setTags(doc.data.labels);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [])
+    getLabelsFromTask(task).then((doc) => {
+      setTags(doc.data.labels);
+    });
+  }, []);
   //this code helps create the special design
   var length = 0;
   var tagList = [];
@@ -96,8 +92,7 @@ function UploadScreen({ route, navigation }) {
   let newTag = ['0', '1', '2'].map((item, index) => {
     return (
       <View key={item} style={addTagRectangleStyle.customTags[index]}>
-        <TouchableHighlight
-          style={addTagButtonStyle.customTags[index]}>
+        <TouchableHighlight style={addTagButtonStyle.customTags[index]}>
           <View>
             <TextInput
               style={addTagTextStyle.customTags[index]}
@@ -108,27 +103,35 @@ function UploadScreen({ route, navigation }) {
                 setCustomTags(temp);
                 if (customTag != '') {
                   let addTagButtonStyleTemp = addTagButtonStyle.customTags;
-                  addTagButtonStyleTemp[index] = style.selectedTagButton
-                  setCustomTagButtonStyle({ customTags: addTagButtonStyleTemp })
+                  addTagButtonStyleTemp[index] = style.selectedTagButton;
+                  setCustomTagButtonStyle({
+                    customTags: addTagButtonStyleTemp,
+                  });
                   let addTagTextStyleTemp = addTagTextStyle.customTags;
-                  addTagTextStyleTemp[index] = style.selectedTagText
-                  setCustomTagTextStyle({ customTags: addTagTextStyleTemp })
-                  let addTagRectangleStyleTemp = addTagRectangleStyle.customTags;
-                  addTagRectangleStyleTemp[index] = style.selectedRectangle
-                  setCustomTagRectangleStyle({ customTags: addTagRectangleStyleTemp })
-
+                  addTagTextStyleTemp[index] = style.selectedTagText;
+                  setCustomTagTextStyle({ customTags: addTagTextStyleTemp });
+                  let addTagRectangleStyleTemp =
+                    addTagRectangleStyle.customTags;
+                  addTagRectangleStyleTemp[index] = style.selectedRectangle;
+                  setCustomTagRectangleStyle({
+                    customTags: addTagRectangleStyleTemp,
+                  });
                 } else {
                   let addTagButtonStyleTemp = addTagButtonStyle.customTags;
-                  addTagButtonStyleTemp[index] = style.tagButton
-                  setCustomTagButtonStyle({ customTags: addTagButtonStyleTemp })
+                  addTagButtonStyleTemp[index] = style.tagButton;
+                  setCustomTagButtonStyle({
+                    customTags: addTagButtonStyleTemp,
+                  });
                   let addTagTextStyleTemp = addTagTextStyle.customTags;
-                  addTagTextStyleTemp[index] = style.tagText
-                  setCustomTagTextStyle({ customTags: addTagTextStyleTemp })
-                  let addTagRectangleStyleTemp = addTagRectangleStyle.customTags;
-                  addTagRectangleStyleTemp[index] = style.rectangle
-                  setCustomTagRectangleStyle({ customTags: addTagRectangleStyleTemp })
+                  addTagTextStyleTemp[index] = style.tagText;
+                  setCustomTagTextStyle({ customTags: addTagTextStyleTemp });
+                  let addTagRectangleStyleTemp =
+                    addTagRectangleStyle.customTags;
+                  addTagRectangleStyleTemp[index] = style.rectangle;
+                  setCustomTagRectangleStyle({
+                    customTags: addTagRectangleStyleTemp,
+                  });
                 }
-
               }}
             ></TextInput>
           </View>
@@ -156,7 +159,10 @@ function UploadScreen({ route, navigation }) {
                 return (
                   <View
                     key={tag}
-                    style={tagRectangleStyles[tags.indexOf(tag)] || style.rectangle}>
+                    style={
+                      tagRectangleStyles[tags.indexOf(tag)] || style.rectangle
+                    }
+                  >
                     <TouchableHighlight
                       //this changes the button styling based on if the button was selected or not
                       onPress={function () {
@@ -192,10 +198,14 @@ function UploadScreen({ route, navigation }) {
                         setTagRectangleStyles(tagRectangleStylesTemp);
                       }}
                       style={
-                        tagButtonStyles[tags.indexOf(tag)] || style.tagButton}>
+                        tagButtonStyles[tags.indexOf(tag)] || style.tagButton
+                      }
+                    >
                       <Text
                         style={
-                          tagTextStyles[tags.indexOf(tag)] || style.tagText}>
+                          tagTextStyles[tags.indexOf(tag)] || style.tagText
+                        }
+                      >
                         {tag}
                       </Text>
                     </TouchableHighlight>
@@ -215,10 +225,8 @@ function UploadScreen({ route, navigation }) {
             marginRight: 12,
             left: 5,
             borderRadius: 6,
-
           }}
-        >
-        </View>
+        ></View>
       </ScrollView>
       <TouchableOpacity
         style={style.button}
@@ -313,10 +321,12 @@ const style = StyleSheet.create({
   uploadButtonText: {
     fontSize: 20,
     color: 'white',
+    fontWeight: 'bold',
   },
   cancelButtonText: {
     fontSize: 20,
     color: '#0F2B64',
+    fontWeight: 'bold',
   },
   rectangle: {
     height: 45,
@@ -348,7 +358,7 @@ const style = StyleSheet.create({
     color: 'white',
     left: 5,
     borderRadius: 6,
-    alignItems: "center"
+    alignItems: 'center',
   },
   selectedTagText: {
     fontSize: 12,
@@ -417,7 +427,7 @@ const style = StyleSheet.create({
     color: 'white',
     borderRadius: 10,
     height: 16,
-    width: 60
+    width: 60,
   },
   title_and_button: {
     paddingVertical: 20,
