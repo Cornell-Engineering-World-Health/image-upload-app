@@ -28,6 +28,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "Aurolabs Image Labeling App"
+    "description": "Aurolabs Image Labeling App",
+    "githubUrl": "https://github.com/Cornell-Engineering-World-Health/image-upload-app"
   }
 }
