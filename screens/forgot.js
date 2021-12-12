@@ -1,21 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions } from 'react-native';
 import 'react-native-gesture-handler';
 import Title from '../components/title';
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ResetButton from '../components/ResetButton';
+import BackButton from '../components/backButton';
 
 function ForgotScreen({ navigation }) {
   const [email, setEmail] = useState('');
 
   return (
     <SafeAreaView style={style.screen}>
+      <BackButton navigation={navigation} />
       <Title>Reset Password</Title>
       <View style={style.container}>
-        <Text style={{ width: '100%', textAlign: 'center' }}>
+        <Text style={style.text}>
           Please enter the email address associated with your account.
-          {'\n'}
         </Text>
         <TextInput
           placeholder="Enter Email Address"
@@ -24,8 +25,8 @@ function ForgotScreen({ navigation }) {
           value={email}
           style={{
             width: '100%',
-            textAlign: 'center',
-            padding: 20,
+            textAlign: 'left',
+            padding: '5%',
             borderRadius: 10,
             backgroundColor: 'white',
           }}
@@ -38,22 +39,23 @@ function ForgotScreen({ navigation }) {
 }
 
 const style = StyleSheet.create({
+  text: { width: '100%', textAlign: 'center', marginBottom: '10%' },
   header: {
     fontSize: 30,
     textAlign: 'left',
-    marginVertical: 10,
     color: '#0F2B64',
   },
   screen: {
     flex: 1,
     backgroundColor: '#FAFAFA',
-    padding: 20,
+    paddingHorizontal: Dimensions.get('window').width / 20,
   },
   container: {
     backgroundColor: '#D8EDFA',
     borderRadius: 10,
-    marginVertical: 10,
-    padding: 20,
+    marginVertical: '5%',
+    padding: '5%',
+    paddingTop: '2%',
     flexDirection: 'row',
     alignItems: 'center',
     flexWrap: 'wrap',

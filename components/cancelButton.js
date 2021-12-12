@@ -1,17 +1,15 @@
 import * as React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-/** Custom Component
- *  Requires: Starts with capital letter
- *  Creates a button that navigates to [next] screen with [txt] as its title
- */
-function CancelButton({ navigation, txt }) {
+function CancelButton({ navigation }) {
   return (
     <TouchableOpacity
       style={style.cancelbutton}
-      onPress={() => navigation.goBack()}
+      onPress={() =>
+        navigation.navigate('Home', { bannerMessage: 'Upload cancelled!' })
+      }
     >
-      <Text style={style.cancelbuttonText}>{txt}</Text>
+      <Text style={style.cancelbuttonText}>CANCEL</Text>
     </TouchableOpacity>
   );
 }
@@ -30,6 +28,7 @@ const style = StyleSheet.create({
   cancelbuttonText: {
     fontSize: 20,
     color: '#000',
+    fontWeight: 'bold',
   },
 });
 export default CancelButton;

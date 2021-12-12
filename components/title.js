@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
-/** Title text with style. */
 function Title({ children }) {
   const style = StyleSheet.create({
     titleText: {
@@ -10,6 +9,7 @@ function Title({ children }) {
       alignSelf: 'stretch',
       textAlign: 'left',
       marginVertical: '3%',
+      marginTop: '20%',
       color: '#0F2B64',
     },
   });

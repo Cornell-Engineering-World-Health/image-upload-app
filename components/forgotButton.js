@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import { Text } from 'react-native';
-/** Forgot button
- *  - Leads to Reset Password Screen
- */
+
 function ForgotButton({ navigation }) {
   return (
     <TouchableOpacity
@@ -24,6 +22,7 @@ const style = StyleSheet.create({
   buttonText: {
     fontSize: 12,
     color: '#FAFAFA',
+    fontWeight: 'bold',
   },
 });
 

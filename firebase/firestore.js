@@ -11,18 +11,15 @@ export const getLabelsFromTask = async (task) => {
         id: doc.id,
         data: doc.data(),
       };
-    })
-    .catch((err) => {
-      console.log('ERRORR', err);
     });
 };
 
 export function uploadBugReport(report, email) {
-  const docRef = db.collection('bugs').add({
+  return db.collection('bugs').add({
     description: report,
     user: email,
+    date: firebase.firestore.FieldValue.serverTimestamp(),
   });
-  console.log('Upload bug report success');
 }
 
 export function uploadImage(ref, task, userID, labels, email) {
@@ -47,8 +44,5 @@ export const getUserByEmail = async (email) => {
         id: doc.id,
         data: doc.data(),
       };
-    })
-    .catch((err) => {
-      console.log('ERRORR', err);
     });
 };

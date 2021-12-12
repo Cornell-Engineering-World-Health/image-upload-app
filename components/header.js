@@ -4,7 +4,6 @@ import SettingsButton from '../components/settingsButton';
 import ReportButton from '../components/reportButton';
 import Title from '../components/title';
 
-/** Title text with style. */
 function Header({ navigation, screenName }) {
   return (
     <View style={style.headerContainer}>
@@ -12,7 +11,7 @@ function Header({ navigation, screenName }) {
         {screenName}
       </Title>
       <View style={style.headerButtons}>
-        <ReportButton navigation={navigation} />
+        <ReportButton navigation={navigation} styling={style.reportButton} />
         <SettingsButton navigation={navigation} />
       </View>
     </View>
@@ -30,6 +29,12 @@ const style = StyleSheet.create({
   headerButtons: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
+  },
+  reportButton: {
+    top: '0%',
+    right: '10%',
+    position: 'relative',
+    zIndex: 0,
   },
 });
 
