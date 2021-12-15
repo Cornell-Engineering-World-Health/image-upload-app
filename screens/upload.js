@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import {
-  TouchableOpacity,
   TouchableHighlight,
   StyleSheet,
   View,
@@ -9,7 +8,6 @@ import {
   ScrollView,
   Image,
   TextInput,
-  ImageEditor,
 } from 'react-native';
 import ReportButton from '../components/reportButton';
 import { Image_object } from '../util/Image';
@@ -17,8 +15,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { getLabelsFromTask } from '../firebase/firestore';
 import { UserContext } from '../util/context';
 import BackButton from '../components/backButton'
-import NextButton from '../components/nextButton';
-import { ImageBackground } from 'react-native-web';
 
 /** Upload Screen
  *  Design (Upload-1):
