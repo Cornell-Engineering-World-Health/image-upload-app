@@ -11,7 +11,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 function ConfirmationScreen({ navigation, route }) {
   const { image } = route.params;
   const labels = image.labels;
-  var count = 0;
   var labelsRows = [];
   var rowList = [];
   var rowLength = 0;
@@ -82,7 +81,7 @@ const style = StyleSheet.create({
     justifyContent: 'center',
   },
   pic: {
-    width: Dimensions.get('window').width / 3,
+    width: Dimensions.get('window').width / 4,
     aspectRatio: 0.5,
     borderRadius: 5,
   },

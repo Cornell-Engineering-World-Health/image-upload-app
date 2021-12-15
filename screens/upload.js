@@ -14,7 +14,8 @@ import { Image_object } from '../util/Image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getLabelsFromTask } from '../firebase/firestore';
 import { UserContext } from '../util/context';
-import BackButton from '../components/backButton'
+import BackButton from '../components/backButton';
+import Title from '../components/title';
 
 /** Upload Screen
  *  Design (Upload-1):
@@ -25,7 +26,6 @@ import BackButton from '../components/backButton'
  * - upload image object button
  */
 
-/** <ImageViewer imageUrls={images} renderIndicator={() => null} /> */
 function UploadScreen({ route, navigation }) {
   const { img } = route.params;
   const task = UserContext._currentValue[0]['task'];
@@ -55,7 +55,6 @@ function UploadScreen({ route, navigation }) {
     customTags: [style.rectangle, style.rectangle, style.rectangle],
   });
 
-  console.log(img.uri)
   useEffect(() => {
     getLabelsFromTask(task).then((doc) => {
       setTags(doc.data.labels);
@@ -142,17 +141,21 @@ function UploadScreen({ route, navigation }) {
   });
   return (
     <SafeAreaView style={style.view}>
-      <View style={style.title_and_button}>
-        <Text style={style.label}>Label Image</Text>
-        <ReportButton navigation={navigation} />
-      </View>
-      <ScrollView style={{ width: 150, height: 200, flexGrow: 0 }} minimumZoomScale={1} maximumZoomScale={5}>
+      <Title>Label Image</Title>
+      <ReportButton navigation={navigation} />
+      <BackButton navigation={navigation} />
+      <ScrollView
+        style={{ width: 150, height: 200, flexGrow: 0 }}
+        minimumZoomScale={1}
+        maximumZoomScale={5}
+      >
         <Image style={style.thumbnail} source={{ uri: img.uri }} />
       </ScrollView>
       <View style={style.scrollView}>
         <View style={style.scrollViewHeaderView}>
           <Text style={style.scrollViewHeader}>
-            Tap on a pre-set label to select it. Type in empty labels to create custom labels. Delete text in custom labels to unselect them.
+            Tap on a pre-set label to select it. Type in empty labels to create
+            custom labels. Delete text in custom labels to unselect them.
           </Text>
         </View>
         <View style={{ flexDirection: 'column' }}>
@@ -231,7 +234,8 @@ function UploadScreen({ route, navigation }) {
           }}
         ></View>
       </View>
-      <TouchableHighlight style={style.button}
+      <TouchableHighlight
+        style={style.button}
         activeOpacity={1}
         onPress={() => {
           var tagsData = [];
@@ -250,11 +254,8 @@ function UploadScreen({ route, navigation }) {
           navigation.navigate('Confirmation', { image: image });
         }}
       >
-        <Text style={style.uploadButtonText}>NEXT</Text>
+        <Text style={style.buttonText}>NEXT</Text>
       </TouchableHighlight>
-      <BackButton navigation={navigation}>
-        <Text style={style.cancelButtonText}>CANCEL</Text>
-      </BackButton>
     </SafeAreaView>
   );
 }
@@ -311,17 +312,7 @@ const style = StyleSheet.create({
     marginTop: 9,
     marginLeft: 5,
     fontWeight: 'bold',
-    fontSize: 8
-  },
-  uploadButtonText: {
-    fontSize: 20,
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  cancelButtonText: {
-    fontSize: 20,
-    color: '#0F2B64',
-    fontWeight: 'bold',
+    fontSize: 8,
   },
   rectangle: {
     height: 45,
@@ -331,17 +322,6 @@ const style = StyleSheet.create({
     marginRight: 12,
     left: 5,
     borderRadius: 6,
-  },
-  cancelButton: {
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 10,
-    borderWidth: 5,
-    width: 350,
-    borderColor: '#0F2B64',
-    alignSelf: 'center',
-    marginVertical: 10,
-    alignItems: 'center',
   },
   selectedRectangle: {
     height: 36,
@@ -366,7 +346,6 @@ const style = StyleSheet.create({
     maxWidth: 330,
     maxHeight: 360,
   },
-
   upload: {
     flex: 0.1,
     width: '500px',
@@ -381,9 +360,15 @@ const style = StyleSheet.create({
     marginVertical: '3%',
     alignItems: 'center',
   },
+  buttonText: {
+    fontSize: 20,
+    color: '#FAFAFA',
+    fontWeight: 'bold',
+  },
   view: {
     flex: 1,
     alignItems: 'center',
+    marginHorizontal: '2%',
   },
   label: {
     paddingTop: 9,
@@ -392,7 +377,7 @@ const style = StyleSheet.create({
     color: '#0F2B64',
     textAlign: 'center',
     width: '100%',
-    fontWeight: "bold"
+    fontWeight: 'bold',
   },
   thumbnail: {
     width: 150,
@@ -419,12 +404,6 @@ const style = StyleSheet.create({
     borderRadius: 10,
     height: 16,
     width: 60,
-  },
-  title_and_button: {
-    paddingVertical: 8,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
   },
 });
 
