@@ -3,6 +3,7 @@
     "name": "AuroImage",
     "slug": "auroimage",
     "version": "1.0.0",
+    "owner": "ewh",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -17,7 +18,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ewh.auroimage"
     },
     "android": {
       "adaptiveIcon": {
